@@ -1,0 +1,1 @@
+SELECT * FROM posts Where authid = $1;
