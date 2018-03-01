@@ -3,7 +3,6 @@ import IconMenu from "material-ui/IconMenu";
 import MenuItem from "material-ui/MenuItem";
 import IconButton from "material-ui/IconButton";
 import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
-import axios from "axios";
 import { signOut, getLikes, getUser, getPosts } from "../ducks/reducer";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";

@@ -7,6 +7,7 @@ import Crypto from "./components/categories/Crypto";
 import Climate from "./components/categories/Climate";
 import AddPost from "./components/newPost";
 import Profile from "./components/Profile";
+import Post from "./components/Post";
 
 export default (
   <Switch>
@@ -17,5 +18,7 @@ export default (
     <Route path="/Climate" component={Climate} />
     <Route path="/newPost" component={AddPost} />
     <Route path="/profile" component={Profile} />
+    <Route path="/post/:category" component={AddPost} />
+    <Route path="/entry/:id" component={Post} />
   </Switch>
 );

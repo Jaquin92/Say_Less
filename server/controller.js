@@ -88,7 +88,39 @@ const getLikes = (req, res) => {
     .catch(() => console.log("error in get user post for profile"));
 };
 
+const getPost = (req, res) => {
+  const dbInstance = req.app.get("db");
+
+  dbInstance
+    .get_post(req.params.id)
+    .then(response => res.status(200).send(response))
+    .catch(() => console.log("error in get single post"));
+}
+
+const postComment = (req, res) => {
+
+  const dbInstance = req.app.get("db");
+
+  dbInstance
+    .post_comment([req.session.passport.user.id, req.body.body, req.body.post, req.session.passport.user.picture, req.session.passport.user.displayName])
+    .then(res.status(200).send())
+    .catch(() => console.log("error in get single post"));
+}
+
+const getComments = (req, res) => {
+  const dbInstance = req.app.get("db");
+
+  dbInstance
+    .get_comments(req.params.id)
+    .then(response => res.status(200).send(response))
+    .catch(() => console.log("error in get comments"));
+}
+
 module.exports = {
+
+  getComments: getComments,
+  postComment: postComment,
+  getPost: getPost,
   getLikes: getLikes,
   getPosts: getPosts,
   signOut: signOut,

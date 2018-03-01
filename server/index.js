@@ -9,6 +9,8 @@ const strategy = require("../strategy");
 require("dotenv").config();
 
 const {
+  getComments,
+  postComment,
   getAll,
   getUser,
   addPost,
@@ -16,7 +18,8 @@ const {
   getCategory,
   signOut,
   getPosts,
-  getLikes
+  getLikes,
+  getPost
 } = require("./controller");
 const app = express();
 
@@ -58,8 +61,8 @@ app.get(
   passport.authenticate("auth0", {
     successRedirect: "/me",
     failureRedirect: "/login",
-    failureFlash: true,
-    connection: "github"
+    failureFlash: true
+
   })
 );
 app.get("/me", (req, res, next) => {
@@ -87,6 +90,9 @@ app.get("/api/get/:category", getCategory);
 app.get("/api/signOut", signOut);
 app.get("/api/posts", getPosts);
 app.get("/api/likes", getLikes);
+app.get("/entry/:id", getPost);
+app.post("/post/comment", postComment);
+app.get("/comments/:id", getComments);
 
 let port = 3002;
 

@@ -36,41 +36,12 @@ class AddPost extends Component {
           onChange={e => this.setState({ post: e.target.value })}
           type="text"
         />
-        <input
-          onClick={e => this.setState({ category: e.target.value })}
-          type="radio"
-          name="contact"
-          value="Software"
-        />
-        Software
-        <input
-          onClick={e => this.setState({ category: e.target.value })}
-          type="radio"
-          name="contact"
-          value="Hardware"
-        />
-        Hardware
-        <input
-          onClick={e => this.setState({ category: e.target.value })}
-          type="radio"
-          name="contact"
-          value="Crypto"
-        />
-        Crypto
-        <input
-          onClick={e => {
-            this.setState({ category: e.target.value });
-          }}
-          type="radio"
-          name="contact"
-          value="Climate"
-        />
-        Climate
+
         <button
           onClick={() => {
             this.newPost(
               this.state.post,
-              this.state.category,
+              this.props.match.params.category,
               this.state.title
             );
           }}

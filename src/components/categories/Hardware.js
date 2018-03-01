@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom"
+import { Card, CardHeader } from 'material-ui/Card';
 import Moment from "react-moment";
 import moment from "moment";
 import "moment-timezone";
-import { Link } from "react-router-dom";
 
 class Hardware extends Component {
   constructor() {
@@ -24,19 +25,22 @@ class Hardware extends Component {
 
   render() {
     let posts = this.state.allPosts.map((item, i) => {
-      return (
-        <div className="postRow" key={i}>
-          <img className="postThumb" src={item.img} alt="" />
-          <div className="postInfo">
-            <span>{item.name}</span>
-            <span>{item.title}</span>
-            <span>{item.category}</span>
-            <Moment fromNow>{moment(item.time).local()}</Moment>
-          </div>
-        </div>
-      );
-    });
-    return <div className="postContainer">{posts}</div>;
+      let path = <Link to={`/entry/${item.id}`} > {item.title}  </Link>
+      return <Card key={i} >
+        <CardHeader
+          title={item.name}
+
+
+          subtitle={path}
+
+          avatar={item.img}
+          actAsExpander={true}
+
+        />
+
+      </Card>
+    })
+    return <div className="postContainer"  >{posts}</div>
   }
 }
 

@@ -1,0 +1,1 @@
+SELECT * FROM comment WHERE post = $1;

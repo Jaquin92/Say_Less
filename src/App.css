@@ -3,7 +3,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
-  border: solid 0.5px black;
+  border: solid 0.5px lightgrey;
 }
 
 .logo {
@@ -58,4 +58,22 @@
   border-radius: 50px;
   height: 50px;
   width: 50px;
+}
+
+.constant {
+  display: flex;
+}
+.newPost {
+  height: 40px;
+  width: 30%;
+}
+
+.postBody{
+  display: flex;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
+.loading{
+  margin: 0% 50%;
 }
