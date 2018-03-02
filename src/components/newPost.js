@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { newPosts } from "../ducks/reducer"
 import axios from "axios";
 
 class AddPost extends Component {
@@ -12,6 +15,15 @@ class AddPost extends Component {
     };
     this.newPost = this.newPost.bind(this);
   }
+
+  componentDidMount() {
+    this.props.newPosts()
+  }
+
+  componentWillUnmount() {
+    this.props.newPosts()
+  }
+
   newPost(str, cat, tit) {
     let post = { post: str, category: cat, title: tit };
 
@@ -25,32 +37,37 @@ class AddPost extends Component {
   }
   render() {
     return (
-      <div>
-        <input
+      <div>{this.props.loggedIn ?
+
+        <div>   <input
           onChange={e => this.setState({ title: e.target.value })}
           type="text"
           placeholder="title"
         />
-        <input
-          placeholder="body"
-          onChange={e => this.setState({ post: e.target.value })}
-          type="text"
-        />
+          <input
+            placeholder="body"
+            onChange={e => this.setState({ post: e.target.value })}
+            type="text"
+          />
 
-        <button
-          onClick={() => {
-            this.newPost(
-              this.state.post,
-              this.props.match.params.category,
-              this.state.title
-            );
-          }}
-        >
-          Submit
+          <button
+            onClick={() => {
+              this.newPost(
+                this.state.post,
+                this.props.match.params.category,
+                this.state.title
+              );
+            }}
+          >
+            Submit
         </button>
-      </div>
+        </div> : <p>You are not logged in</p>} </div>
+
+
     );
   }
 }
 
-export default AddPost;
+const mapStateToProps = state => state;
+
+export default withRouter(connect(mapStateToProps, { newPosts })(AddPost));

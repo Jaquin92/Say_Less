@@ -6,8 +6,37 @@ const GET_POSTS = "GET_POSTS";
 const GET_USER = "GET_USER";
 const GET_LIKES = "GET_LIKES";
 const SIGN_OUT = "SIGN_OUT";
+const NEW_POST = "NEW_POST";
+
+// INITIAL STATE 
+
+const initialState = {
+  userLikes: [],
+  userPosts: [],
+  user: [],
+  loggedIn: false,
+  isLoading: false,
+  didErr: false,
+  errMessage: null,
+  onNewPost: false
+};
 
 // ACTION CREATORS
+
+export function newPosts() {
+  if (initialState.onNewPost === false) {
+    return {
+      type: NEW_POST,
+      payload: true
+    }
+  }
+  else {
+    return {
+      type: NEW_POST,
+      payload: false
+    }
+  }
+}
 
 export function getLikes() {
   return {
@@ -48,18 +77,16 @@ export function signOut() {
   };
 }
 
-const initialState = {
-  userLikes: [],
-  userPosts: [],
-  user: [],
-  loggedIn: false,
-  isLoading: false,
-  didErr: false,
-  errMessage: null
-};
+
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+
+    case NEW_POST:
+      return Object.assign({}, state, {
+        onNewPost: action.payload
+      })
+
     case `${GET_POSTS}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
 

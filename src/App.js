@@ -20,7 +20,7 @@ class App extends Component {
           <div className="constant">
             {routes}
 
-            {this.props.loggedIn && (
+            {this.props.loggedIn && !this.props.onNewPost && (
               <DropDownMenu
                 value={1}
                 onChange={this.handleChange}

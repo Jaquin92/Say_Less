@@ -18,6 +18,7 @@ class Post extends Component {
             expanded: false,
             commentInput: "",
             post: {},
+            commentInput: "",
             comments: []
         }
     }
@@ -33,6 +34,8 @@ class Post extends Component {
         })
 
     }
+
+
 
     handleExpandChange = (expanded) => {
         this.setState({ expanded: expanded });
@@ -57,11 +60,20 @@ class Post extends Component {
             post: this.props.match.params.id
         }
 
-        axios.post("/post/comment", body).then(() => alert("comment posted!")).catch(() => {
-            console.log('error on add comment')
-        })
+        if (str === "") {
+            alert("Please fill in field")
+        }
+        else {
 
-        this.setState({ ...this.state })
+            axios.post("/post/comment", body).then(() => axios.get(`/comments/${this.props.match.params.id}`).then(response => {
+                this.setState({ comments: response.data })
+            }).catch(() => {
+                console.log('couldnt get comments')
+            })
+            )
+            this.setState({ commentInput: "" })
+        }
+
 
     }
 
@@ -98,15 +110,17 @@ class Post extends Component {
                     {item.body}
                 </CardText>
                 <CardActions>
-                    <FlatButton label="Like" />
-                    <FlatButton label="Dislike" />
-                    <p>hello</p>
+                    <FlatButton label=">" />
+                    <FlatButton label="<" />
+
                 </CardActions>
             </Card> : <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="" className="loading" />}
             {this.props.loggedIn &&
                 <div><TextField
                     onChange={e => this.setState({ commentInput: e.target.value })}
                     hintText="Leave a comment..."
+
+                    value={this.state.commentInput}
                     fullWidth={true}
                     multiLine={true}
                     rows={1}
