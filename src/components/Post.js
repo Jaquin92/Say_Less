@@ -21,7 +21,8 @@ class Post extends Component {
             post: {},
             commentInput: "",
             comments: [],
-            likes: []
+            likes: [],
+            liked: false
         }
     }
 
@@ -35,7 +36,15 @@ class Post extends Component {
             console.log('couldnt get comments')
         })
 
-        axios.get(`/api/postLikes/${this.props.match.params.id}`).then(results => this.setState({ likes: results.data })).catch("no likes")
+        axios.get(`/api/postLikes/${this.props.match.params.id}`).then(results => {
+            this.setState({ likes: results.data })
+            let liked = this.state.likes.filter(item => {
+                return item.authid === this.props.user.id
+            })
+            if (liked.length > 0) {
+                this.setState({ liked: true })
+            }
+        }).catch("no likes")
 
     }
 
@@ -79,24 +88,44 @@ class Post extends Component {
     }
 
     changeRating() {
-        let rate = {
-            id: this.props.match.params.id,
 
-        }
         let newLikes = this.state.likes;
-        axios
-            .put("/api/changeRating", rate)
-            .then(result => {
-                newLikes.push(result.data)
-                this.setState({ likes: newLikes })
-            })
-            .catch(() => console.log("no rate change"))
+        let rate = {
+            id: this.props.match.params.id
+        }
+
+        if (this.state.liked) {
+            axios.delete(`/api/like/${this.props.match.params.id}`).then(result => {
+
+                this.setState({ likes: result.data, liked: false })
+                console.log(this.state.likes)
+            }).catch(() => console.log("couldnt unlike"))
+        } else {
+            axios
+                .put("/api/changeRating", rate)
+                .then(result => {
+
+                    this.setState({ likes: result.data, liked: true })
+                    console.log(this.state.likes)
+                })
+                .catch(() => console.log("no rate change"))
+        }
+
+
 
     }
 
 
 
+
+
     render() {
+        let like;
+        if (this.state.liked) {
+            like = <FlatButton style={{ color: "red" }} onClick={() => this.changeRating()} label="Unlike" />
+        } else {
+            like = <FlatButton onClick={() => this.changeRating()} label="Like" />
+        }
 
         let comments = this.state.comments.map((item, i) => {
 
@@ -130,7 +159,7 @@ class Post extends Component {
                     {item.body}
                 </CardText>
                 <CardActions>
-                    {this.props.loggedIn && <FlatButton onClick={() => this.changeRating()} label="Like" />}
+                    {this.props.loggedIn && <div>{like}</div>}
 
 
                 </CardActions>

@@ -126,7 +126,14 @@ const changeRate = (req, res) => {
       if (response.length === 0) {
         dbInstance
           .change_rating([req.session.passport.user.id, req.body.id])
-          .then(response => res.status(200).send(response))
+          .then(() =>
+            dbInstance
+              .post_likes(req.params.id)
+              .then(result => res.status(200).send(result))
+              .catch(() => console.log("error in get likes while adding"))
+
+
+          )
           .catch(() => console.log("error in change rate"));
       }
     })
@@ -147,7 +154,26 @@ const postLikes = (req, res) => {
 
 }
 
+const removeLike = (req, res) => {
+
+
+  const dbInstance = req.app.get("db");
+
+
+  dbInstance
+    .remove_like([req.session.passport.user.id, req.params.id])
+    .then(
+      dbInstance
+        .post_likes(req.params.id)
+        .then(response => res.status(200).send(response))
+        .catch(() => console.log("error in get likes while deleting"))
+    )
+    .catch(() => console.log("error deleting like"));
+
+}
+
 module.exports = {
+  removeLike: removeLike,
   postLikes: postLikes,
   changeRate: changeRate,
   getComments: getComments,
