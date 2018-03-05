@@ -15,6 +15,7 @@ class Crypto extends Component {
   }
 
   componentDidMount() {
+
     axios
       .get("/api/get/Crypto")
       .then(response => this.setState({ allPosts: response.data }))

@@ -116,8 +116,40 @@ const getComments = (req, res) => {
     .catch(() => console.log("error in get comments"));
 }
 
-module.exports = {
+const changeRate = (req, res) => {
+  let likes = [];
+  const dbInstance = req.app.get("db");
 
+  dbInstance
+    .like_check([req.session.passport.user.id, req.body.id])
+    .then(response => {
+      if (response.length === 0) {
+        dbInstance
+          .change_rating([req.session.passport.user.id, req.body.id])
+          .then(response => res.status(200).send(response))
+          .catch(() => console.log("error in change rate"));
+      }
+    })
+    .catch(() => console.log("error in get user post for profile"));
+
+
+}
+
+const postLikes = (req, res) => {
+
+  const dbInstance = req.app.get("db");
+
+
+  dbInstance
+    .post_likes(req.params.id)
+    .then(response => res.status(200).send(response))
+    .catch(() => console.log("error in get likes"));
+
+}
+
+module.exports = {
+  postLikes: postLikes,
+  changeRate: changeRate,
   getComments: getComments,
   postComment: postComment,
   getPost: getPost,

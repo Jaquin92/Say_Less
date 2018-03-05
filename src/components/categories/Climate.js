@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"
 import { Card, CardHeader } from 'material-ui/Card';
+import Moment from 'react-moment';
 // import Moment from "react-moment";
 // import moment from "moment";
 // import "moment-timezone";
@@ -15,6 +16,7 @@ class Climate extends Component {
   }
 
   componentDidMount() {
+
     axios
       .get("/api/get/Climate")
       .then(response => this.setState({ allPosts: response.data }))
@@ -28,6 +30,7 @@ class Climate extends Component {
 
 
     let posts = this.state.allPosts.map((item, i) => {
+
       let path = <Link to={`/entry/${item.id}`} > {item.title}  </Link>
       return <Card key={i} >
         <CardHeader
@@ -39,7 +42,7 @@ class Climate extends Component {
           avatar={item.img}
           actAsExpander={true}
 
-        />
+        > <Moment fromNow >{new Date(item.time).toLocaleString()}</Moment> </CardHeader>
 
       </Card>
     })

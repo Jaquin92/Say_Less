@@ -19,7 +19,9 @@ const {
   signOut,
   getPosts,
   getLikes,
-  getPost
+  getPost,
+  changeRate,
+  postLikes,
 } = require("./controller");
 const app = express();
 
@@ -93,6 +95,9 @@ app.get("/api/likes", getLikes);
 app.get("/entry/:id", getPost);
 app.post("/post/comment", postComment);
 app.get("/comments/:id", getComments);
+app.put("/api/changeRating", changeRate)
+app.get("/api/postLikes/:id", postLikes)
+
 
 let port = 3002;
 

@@ -1,0 +1,1 @@
+SELECT * FROM likes WHERE authid = $1 AND post = $2;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { newPosts } from "../ducks/reducer"
+import { newPosts, leavingNewPost } from "../ducks/reducer"
 import axios from "axios";
 
 class AddPost extends Component {
@@ -17,12 +17,14 @@ class AddPost extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.onNewPost)
     this.props.newPosts()
+  }
+  componentWillUnmount() {
+    this.props.leavingNewPost()
   }
 
-  componentWillUnmount() {
-    this.props.newPosts()
-  }
+
 
   newPost(str, cat, tit) {
     let post = { post: str, category: cat, title: tit };
@@ -61,7 +63,8 @@ class AddPost extends Component {
           >
             Submit
         </button>
-        </div> : <p>You are not logged in</p>} </div>
+        </div> : <p>You are not logged in</p>}
+      </div>
 
 
     );
@@ -70,4 +73,4 @@ class AddPost extends Component {
 
 const mapStateToProps = state => state;
 
-export default withRouter(connect(mapStateToProps, { newPosts })(AddPost));
+export default withRouter(connect(mapStateToProps, { leavingNewPost, newPosts })(AddPost));

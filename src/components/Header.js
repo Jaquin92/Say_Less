@@ -1,8 +1,19 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { getUser } from "../ducks/reducer"
 import Icon from "./Icon";
 
 import { Link } from "react-router-dom";
 class Header extends Component {
+  constructor() {
+    super()
+
+  }
+
+  componentDidMount() {
+    this.props.getUser()
+  }
   render() {
     return (
       <div className="Header">
@@ -35,4 +46,6 @@ class Header extends Component {
     );
   }
 }
-export default Header;
+const mapStateToProps = state => state;
+
+export default withRouter(connect(mapStateToProps, { getUser })(Header));

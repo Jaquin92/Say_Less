@@ -24,17 +24,16 @@ const initialState = {
 // ACTION CREATORS
 
 export function newPosts() {
-  if (initialState.onNewPost === false) {
-    return {
-      type: NEW_POST,
-      payload: true
-    }
+  return {
+    type: NEW_POST,
+    payload: true
   }
-  else {
-    return {
-      type: NEW_POST,
-      payload: false
-    }
+}
+
+export function leavingNewPost() {
+  return {
+    type: NEW_POST,
+    payload: false
   }
 }
 
