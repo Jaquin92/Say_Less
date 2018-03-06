@@ -1,4 +1,9 @@
 const axios = require("axios");
+require("dotenv").config();
+
+const news = (req, res) => {
+  axios.get("https://newsapi.org/v2/top-headlines?country=us&apiKey=ad6e78e181474f219261787c1447ff90").then(response => res.status(200).send(response.data)).catch(() => console.log("couldnt get news"))
+}
 
 const checkUser = (req, res, next) => {
   const dbInstance = req.app.get("db");
@@ -116,31 +121,7 @@ const getComments = (req, res) => {
     .catch(() => console.log("error in get comments"));
 }
 
-const changeRate = (req, res) => {
-  let likes = [];
-  const dbInstance = req.app.get("db");
 
-  dbInstance
-    .like_check([req.session.passport.user.id, req.body.id])
-    .then(response => {
-      if (response.length === 0) {
-        dbInstance
-          .change_rating([req.session.passport.user.id, req.body.id])
-          .then(() =>
-            dbInstance
-              .post_likes(req.params.id)
-              .then(result => res.status(200).send(result))
-              .catch(() => console.log("error in get likes while adding"))
-
-
-          )
-          .catch(() => console.log("error in change rate"));
-      }
-    })
-    .catch(() => console.log("error in get user post for profile"));
-
-
-}
 
 const postLikes = (req, res) => {
 
@@ -151,6 +132,26 @@ const postLikes = (req, res) => {
     .post_likes(req.params.id)
     .then(response => res.status(200).send(response))
     .catch(() => console.log("error in get likes"));
+
+}
+
+
+const changeRate = (req, res) => {
+  let likes = [];
+  const dbInstance = req.app.get("db");
+
+  dbInstance
+    .like_check([req.session.passport.user.id, req.body.id])
+    .then(response => {
+      if (response.length === 0) {
+        dbInstance
+          .change_rating([req.session.passport.user.id, req.body.id])
+          .then(result => res.status(200).send(result)
+          )
+          .catch(() => console.log("error in change rate"));
+      }
+    })
+    .catch(() => console.log("error in get user post for profile"));
 
 }
 
@@ -172,7 +173,30 @@ const removeLike = (req, res) => {
 
 }
 
+const userProfile = (req, res) => {
+
+  let user = {}
+
+  const dbInstance = req.app.get("db");
+
+  dbInstance.get_profile(req.params.id).then(result => {
+    user = result
+    dbInstance.get_likes(user[0].authid).then(re => {
+      user.push(re)
+      dbInstance.get_posts(user[0].authid).then(r => {
+        user.push(r)
+        res.send(user)
+      })
+    })
+  })
+
+
+}
+
+
 module.exports = {
+  userProfile: userProfile,
+  news: news,
   removeLike: removeLike,
   postLikes: postLikes,
   changeRate: changeRate,

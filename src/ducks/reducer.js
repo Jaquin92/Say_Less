@@ -8,6 +8,7 @@ const GET_LIKES = "GET_LIKES";
 const SIGN_OUT = "SIGN_OUT";
 const NEW_POST = "NEW_POST";
 
+
 // INITIAL STATE 
 
 const initialState = {
@@ -22,6 +23,8 @@ const initialState = {
 };
 
 // ACTION CREATORS
+
+
 
 export function newPosts() {
   return {
@@ -85,6 +88,7 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, {
         onNewPost: action.payload
       })
+
 
     case `${GET_POSTS}_PENDING`:
       return Object.assign({}, state, { isLoading: true });

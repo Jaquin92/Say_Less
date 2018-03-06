@@ -2,14 +2,25 @@
 .Header {
   height: 100px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-end;
   border: solid 0.5px lightgrey;
+  margin:0px 120px;
 }
 
 .logo {
   margin-left: 3px;
   height: 93px;
+}
+
+.headLogo{
+  display: flex;
+}
+
+.logoNav{
+  display: flex;
+  align-items: flex-end;
+
 }
 
 .nav {
@@ -70,10 +81,18 @@
 
 .constant {
   display: flex;
+  padding: 0px 120px;
+
 }
 .newPost {
-  height: 40px;
-  width: 30%;
+  margin-top: 90px;
+  margin-left: 80px;
+  background-color: #eaf0f9;
+  /* width:80%; */
+  border: solid .5px lightgray;
+  border-radius: 2px;
+  
+  
 }
 
 .postBody{
@@ -84,4 +103,58 @@
 
 .loading{
   margin: 0% 50%;
+}
+
+.sidebar{
+  display: flex;
+  flex-direction: column;
+  width:30%;
+}
+
+.news{
+  height: 800px;
+  border: solid #eaf0f9 1px;
+ margin:10px 0px 0px 80px;
+ 
+}
+
+.postNav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  border: .5px lightgray solid;
+  padding: 0px 10px;
+  background-color: #eaf0f9;
+  box-shadow: 1px 1px 1px lightgray;
+  /* margin-bottom: 1px; */
+  border-radius: 2px;
+  
+}
+
+.sort{
+  display: flex;
+  align-items: center;
+  width: 110px;
+  justify-content: space-between;
+  
+  
+}
+
+
+
+.sortButton:hover{
+  cursor: pointer;
+}
+
+.sortButton:focus{
+  color: lightgrey;
+  border:none;
+  background-color: #eaf0f9;
+}
+
+.likesPosts{
+  display: flex;
+  width: 150px;
+  justify-content: space-between;
 }

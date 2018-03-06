@@ -89,30 +89,33 @@ class Post extends Component {
 
     changeRating() {
 
-        let newLikes = this.state.likes;
+
         let rate = {
             id: this.props.match.params.id
         }
 
         if (this.state.liked) {
-            axios.delete(`/api/like/${this.props.match.params.id}`).then(result => {
+            axios.delete(`/api/like/${this.props.match.params.id}`).then(() => {
 
-                this.setState({ likes: result.data, liked: false })
-                console.log(this.state.likes)
+
+                axios.get(`/api/postLikes/${this.props.match.params.id}`).then(results => {
+                    this.setState({ likes: results.data, liked: false })
+                }).catch(() => console.log("no likes"))
+
+
             }).catch(() => console.log("couldnt unlike"))
         } else {
             axios
                 .put("/api/changeRating", rate)
                 .then(result => {
 
-                    this.setState({ likes: result.data, liked: true })
-                    console.log(this.state.likes)
+                    axios.get(`/api/postLikes/${this.props.match.params.id}`).then(results => {
+                        this.setState({ likes: results.data, liked: true })
+                    }).catch("no likes")
+
                 })
                 .catch(() => console.log("no rate change"))
         }
-
-
-
     }
 
 

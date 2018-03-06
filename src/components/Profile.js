@@ -21,8 +21,11 @@ class Profile extends Component {
                 <img className="profilePic" src={this.props.user.img} alt="" />{" "}
                 {this.props.user.name}{" "}
               </div>
-              {this.props.userPosts.length}-Posts
-              {this.props.userLikes.length}-Likes
+
+              <div className="likesPosts"  > <div>{this.props.userPosts.length}-Posts</div>
+                <div>{this.props.userLikes.length}-Likes </div>
+              </div>
+
             </div>
             <Posts />
           </div>

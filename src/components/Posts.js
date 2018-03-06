@@ -9,17 +9,44 @@ import moment from "moment";
 import "moment-timezone";
 
 class Posts extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      posts: []
+    }
+  }
+
+  componentDidMount() {
+    this.setState({ posts: this.props.userPosts })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props != nextProps) {
+      this.setState({ posts: this.props.userPosts })
+    }
+  }
+
+  sortPostsNew() {
+    let newest = this.state.posts.sort((a, b) => {
+      return b.id - a.id
+    })
+
+    console.log(newest)
+    this.setState({ posts: newest })
+
+  }
+
 
   render() {
-    let posts = this.props.userPosts.map((item, i) => {
+    console.log(this.state)
+
+    let posts = this.state.posts.map((item, i) => {
       let path = <Link to={`/entry/${item.id}`} > {item.title}  </Link>
       return <Card key={i} >
         <CardHeader
           title={item.name}
-
-
           subtitle={path}
-
           avatar={item.img}
           actAsExpander={true}
 
@@ -27,7 +54,17 @@ class Posts extends Component {
 
       </Card>
     })
-    return <div >{posts}</div>
+    return <div >
+
+
+      <div className="postNav" >
+        <span>Discussions</span>
+        <div>  <span onClick={() => this.sortPostsNew()} >Latest</span>/
+<span   >Popular</span> </div>
+
+      </div>
+
+      {posts}</div>
 
 
 

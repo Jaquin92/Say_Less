@@ -25,6 +25,16 @@ class Climate extends Component {
       });
   }
 
+  sortPostsNew() {
+    let newest = this.state.allPosts.sort((a, b) => {
+      return b.id - a.id
+    })
+
+    console.log(newest)
+    this.setState({ allPosts: newest })
+
+  }
+
   render() {
 
 
@@ -46,7 +56,18 @@ class Climate extends Component {
 
       </Card>
     })
-    return <div className="postContainer"  >{posts}</div>
+    return <div className="postContainer"  >
+
+      <div className="postNav" >
+        <span>Discussions</span>
+        <div>  <span onClick={() => this.sortPostsNew()} >Latest</span>/
+<span   >Popular</span> </div>
+      </div>
+      <div>{posts}</div>
+
+
+
+    </div>
 
 
 

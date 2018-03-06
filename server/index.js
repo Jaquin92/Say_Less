@@ -9,6 +9,7 @@ const strategy = require("../strategy");
 require("dotenv").config();
 
 const {
+  news,
   removeLike,
   getComments,
   postComment,
@@ -23,6 +24,7 @@ const {
   getPost,
   changeRate,
   postLikes,
+  userProfile,
 } = require("./controller");
 const app = express();
 
@@ -86,6 +88,8 @@ app.get("/me", (req, res, next) => {
   res.redirect("http://localhost:3000/#/profile");
 });
 
+app.get("/api/profile/:id", userProfile)
+app.get("/api/news", news)
 app.post("/api/post", addPost);
 app.get("/api/get", getAll);
 app.get("/api/user", getUser);

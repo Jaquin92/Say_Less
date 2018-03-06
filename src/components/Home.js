@@ -10,17 +10,36 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      allPosts: []
+      allPosts: [],
+      news: []
     };
   }
 
   componentDidMount() {
+
+    axios.get("/api/news").then(response => {
+
+      this.setState({ news: response.data })
+      console.log(response.data)
+
+    }).catch(() => console.log("no news"))
+
     axios
       .get("/api/get")
       .then(response => this.setState({ allPosts: response.data }))
       .catch(() => {
         console.log("error on get, Home");
       });
+  }
+
+  sortPostsNew() {
+    let newest = this.state.allPosts.sort((a, b) => {
+      return b.id - a.id
+    })
+
+    console.log(newest)
+    this.setState({ allPosts: newest })
+
   }
 
   render() {
@@ -40,7 +59,18 @@ class Home extends Component {
 
       </Card>
     })
-    return <div className="postContainer"  >{posts}</div>
+    return <div className="postContainer"  >
+
+      <div className="postNav" >
+        <span>Discussions</span>
+        <div className="sort" >  <div className="sortButton" onClick={() => this.sortPostsNew()} >Latest</div>
+          <div className="sortButton"   >Popular</div> </div>
+      </div>
+      <div>{posts}</div>
+
+
+
+    </div>
   }
 }
 

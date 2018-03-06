@@ -11,6 +11,10 @@ import "./App.css";
 
 class App extends Component {
 
+  componentDidMount() {
+
+  }
+
   handleChange = (event, index, value) => this.setState({ value });
   render() {
     return (
@@ -20,29 +24,48 @@ class App extends Component {
           <div className="constant">
             {routes}
 
-            {this.props.loggedIn && !this.props.onNewPost && (
-              <DropDownMenu
-                value={1}
-                onChange={this.handleChange}
-                className="newPost"
-                autoWidth={false}
-              >
-                <MenuItem value={1} primaryText="New Post" />
-                <Link to="/post/Software">
-                  {" "}
-                  <MenuItem value={2} primaryText="Software" />
-                </Link>
-                <Link to="/post/Hardware">
-                  <MenuItem value={2} primaryText="Hardware" />
-                </Link>
-                <Link to="/post/Crypto">
-                  <MenuItem value={4} primaryText="Crypto" />
-                </Link>
-                <Link to="/post/Climate">
-                  <MenuItem value={5} primaryText="Climate" />
-                </Link>
-              </DropDownMenu>
-            )}
+
+
+
+            <div className="sidebar" >
+
+              {this.props.loggedIn && !this.props.onNewPost && (
+                <DropDownMenu
+                  value={1}
+                  onChange={this.handleChange}
+                  className="newPost"
+                  autoWidth={false}
+                >
+                  <MenuItem value={1} primaryText="New Post" />
+                  <Link to="/post/Software">
+                    {" "}
+                    <MenuItem value={2} primaryText="Software" />
+                  </Link>
+                  <Link to="/post/Hardware">
+                    <MenuItem value={2} primaryText="Hardware" />
+                  </Link>
+                  <Link to="/post/Crypto">
+                    <MenuItem value={4} primaryText="Crypto" />
+                  </Link>
+                  <Link to="/post/Climate">
+                    <MenuItem value={5} primaryText="Climate" />
+                  </Link>
+                </DropDownMenu>)}
+
+
+              <div className="news">  hello</div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
           </div>
         </MuiThemeProvider>
       </div>
