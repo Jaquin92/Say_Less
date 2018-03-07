@@ -7,39 +7,66 @@ import { Card, CardHeader } from 'material-ui/Card';
 import Moment from "react-moment";
 import moment from "moment";
 import "moment-timezone";
+import axios from 'axios'
 
 class Posts extends Component {
   constructor() {
     super()
 
     this.state = {
-      posts: []
+      posts: [],
+      myPosts: [],
+      likedPosts: []
     }
   }
 
   componentDidMount() {
-    this.setState({ posts: this.props.userPosts })
+
+
+    axios.get(`/api/liked/${this.props.user.id}`).then(response => {
+      this.setState({ likedPosts: response.data, myPosts: this.props.userPosts, posts: this.props.userPosts })
+
+
+      console.log(this.state)
+
+    })
+
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props != nextProps) {
-      this.setState({ posts: this.props.userPosts })
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.props != nextProps) {
+  //     this.setState({ posts: this.props.userPosts })
+  //   }
+  // }
 
   sortPostsNew() {
     let newest = this.state.posts.sort((a, b) => {
       return b.id - a.id
     })
 
-    console.log(newest)
+
     this.setState({ posts: newest })
 
   }
 
+  sortPostsPop() {
+    let popular = this.state.posts.sort((a, b) => {
+      return b.rating - a.rating
+    })
+    this.setState({ posts: popular })
+  }
+
+  likedPosts() {
+    this.setState({ posts: this.state.likedPosts })
+  }
+
+  myPosts() {
+    this.setState({ posts: this.state.myPosts })
+  }
+
 
   render() {
-    console.log(this.state)
+
 
     let posts = this.state.posts.map((item, i) => {
       let path = <Link to={`/entry/${item.id}`} > {item.title}  </Link>
@@ -55,12 +82,22 @@ class Posts extends Component {
       </Card>
     })
     return <div >
+      <div className="postRow">
+        <div>
+          <img className="profilePic" src={this.props.user.img} alt="" />{" "}
+          {this.props.user.name}{" "}
+        </div>
 
+        <div className="likesPosts"  > <div onClick={() => this.myPosts()} >{this.props.userPosts.length}-Posts</div>
+          <div onClick={() => this.likedPosts()} >{this.props.userLikes.length}-Likes </div>
+        </div>
+
+      </div>
 
       <div className="postNav" >
         <span>Discussions</span>
-        <div>  <span onClick={() => this.sortPostsNew()} >Latest</span>/
-<span   >Popular</span> </div>
+        <div className="sort" >  <div className="sortButton" onClick={() => this.sortPostsNew()} >Latest</div>
+          <div className="sortButton" onClick={() => this.sortPostsPop()}   >Popular</div> </div>
 
       </div>
 

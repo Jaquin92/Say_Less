@@ -16,17 +16,6 @@ class Profile extends Component {
       <div className="postContainer">
         {this.props.loggedIn ? (
           <div>
-            <div className="postRow">
-              <div>
-                <img className="profilePic" src={this.props.user.img} alt="" />{" "}
-                {this.props.user.name}{" "}
-              </div>
-
-              <div className="likesPosts"  > <div>{this.props.userPosts.length}-Posts</div>
-                <div>{this.props.userLikes.length}-Likes </div>
-              </div>
-
-            </div>
             <Posts />
           </div>
         ) : (

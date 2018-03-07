@@ -26,7 +26,14 @@ class Home extends Component {
 
     axios
       .get("/api/get")
-      .then(response => this.setState({ allPosts: response.data }))
+      .then(response => {
+        this.setState({ allPosts: response.data })
+        let newest = this.state.allPosts.sort((a, b) => {
+          return b.id - a.id
+        })
+        this.setState({ allPosts: newest })
+
+      })
       .catch(() => {
         console.log("error on get, Home");
       });
@@ -38,6 +45,13 @@ class Home extends Component {
     })
     this.setState({ allPosts: newest })
 
+  }
+
+  sortPostsPop() {
+    let popular = this.state.allPosts.sort((a, b) => {
+      return b.rating - a.rating
+    })
+    this.setState({ allPosts: popular })
   }
 
   render() {
@@ -63,7 +77,7 @@ class Home extends Component {
       <div className="postNav" >
         <span>Discussions</span>
         <div className="sort" >  <div className="sortButton" onClick={() => this.sortPostsNew()} >Latest</div>
-          <div className="sortButton"   >Popular</div> </div>
+          <div className="sortButton" onClick={() => this.sortPostsPop()}  >Popular</div> </div>
       </div>
       <div>{posts}</div>
 

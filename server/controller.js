@@ -213,8 +213,18 @@ const userProfile = (req, res) => {
 
 }
 
+const getUserLikedPosts = (req, res) => {
+  const dbInstance = req.app.get("db");
+
+  dbInstance.get_user_likes(req.params.id).then(result => {
+    res.status(200).send(result)
+  }).catch(() => console.log("couldnt get user likes"))
+
+}
+
 
 module.exports = {
+  getUserLikedPosts: getUserLikedPosts,
   userProfile: userProfile,
   news: news,
   removeLike: removeLike,
