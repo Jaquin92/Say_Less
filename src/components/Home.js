@@ -36,18 +36,17 @@ class Home extends Component {
     let newest = this.state.allPosts.sort((a, b) => {
       return b.id - a.id
     })
-
-    console.log(newest)
     this.setState({ allPosts: newest })
 
   }
 
   render() {
     let posts = this.state.allPosts.map((item, i) => {
+      let userName = <Link to={`/user/${item.userid}`}>{item.name}</Link>
       let path = <Link to={`/entry/${item.id}`} > {item.title}  </Link>
       return <Card key={i} >
         <CardHeader
-          title={item.name}
+          title={userName}
 
 
           subtitle={path}

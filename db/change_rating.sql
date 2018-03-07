@@ -1,1 +1,1 @@
-INSERT INTO likes (authid,post) VALUES ($1,$2) RETURNING *;
+UPDATE posts SET rating = $1 WHERE id = $2;

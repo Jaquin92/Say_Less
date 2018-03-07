@@ -27,18 +27,27 @@ const checkUser = (req, res, next) => {
 
 const addPost = (req, res, next) => {
   const dbInstance = req.app.get("db");
-  dbInstance
-    .new_post([
-      req.session.passport.user.id,
-      req.body.post,
-      req.session.passport.user.displayName,
-      req.body.category,
-      req.body.title,
-      req.session.passport.user.picture
-    ])
-    .then(() => console.log("post succesful"))
-    .catch(() => console.log("error add post"));
-};
+
+
+  dbInstance.get_user(req.session.passport.user.id).then(result => {
+    dbInstance
+      .new_post([
+        req.session.passport.user.id,
+        req.body.post,
+        req.session.passport.user.displayName,
+        req.body.category,
+        req.body.title,
+        req.session.passport.user.picture,
+        result[0].id
+      ])
+      .then(() => console.log("post succesful"))
+      .catch(() => console.log("error add post"))
+  }
+  )
+}
+
+
+
 
 const getAll = (req, res, next) => {
   const dbInstance = req.app.get("db");
@@ -145,13 +154,18 @@ const changeRate = (req, res) => {
     .then(response => {
       if (response.length === 0) {
         dbInstance
-          .change_rating([req.session.passport.user.id, req.body.id])
+          .add_like([req.session.passport.user.id, req.body.id])
           .then(result => res.status(200).send(result)
           )
           .catch(() => console.log("error in change rate"));
       }
     })
     .catch(() => console.log("error in get user post for profile"));
+  let rate = req.body.rate += 1;
+  dbInstance
+    .change_rating([rate, parseInt(req.body.id)])
+    .then(() => console.log("rate changed"))
+    .catch(() => console.log("it dont work"))
 
 }
 
@@ -170,6 +184,12 @@ const removeLike = (req, res) => {
         .catch(() => console.log("error in get likes while deleting"))
     )
     .catch(() => console.log("error deleting like"));
+
+  let rate = req.body.rate -= 1;
+  dbInstance
+    .change_rating([rate, parseInt(req.body.id)])
+    .then(() => console.log("rate changed"))
+    .catch(() => console.log("it dont work"))
 
 }
 

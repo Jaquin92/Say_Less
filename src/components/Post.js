@@ -91,11 +91,12 @@ class Post extends Component {
 
 
         let rate = {
-            id: this.props.match.params.id
+            id: this.props.match.params.id,
+            rate: this.state.likes.length
         }
 
         if (this.state.liked) {
-            axios.delete(`/api/like/${this.props.match.params.id}`).then(() => {
+            axios.put(`/api/like/${this.props.match.params.id}`, rate).then(() => {
 
 
                 axios.get(`/api/postLikes/${this.props.match.params.id}`).then(results => {

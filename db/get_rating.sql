@@ -1,0 +1,1 @@
+SELECT rating FROM posts WHERE id = $1;

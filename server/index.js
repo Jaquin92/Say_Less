@@ -102,7 +102,7 @@ app.post("/post/comment", postComment);
 app.get("/comments/:id", getComments);
 app.put("/api/changeRating", changeRate)
 app.get("/api/postLikes/:id", postLikes)
-app.delete("/api/like/:id", removeLike);
+app.put("/api/like/:id", removeLike);
 
 
 let port = 3002;
