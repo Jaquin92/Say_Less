@@ -1,7 +1,13 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
+import TextField from 'material-ui/TextField';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { newPosts, leavingNewPost } from "../ducks/reducer"
+
 import axios from "axios";
 
 class AddPost extends Component {
@@ -11,7 +17,8 @@ class AddPost extends Component {
     this.state = {
       post: "",
       category: "",
-      title: ""
+      title: "",
+      open: false
     };
     this.newPost = this.newPost.bind(this);
   }
@@ -23,6 +30,13 @@ class AddPost extends Component {
   componentWillUnmount() {
     this.props.leavingNewPost()
   }
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
 
 
 
@@ -38,31 +52,66 @@ class AddPost extends Component {
     console.log(this.state);
   }
   render() {
-    return (
-      <div>{this.props.loggedIn ?
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onClick={this.handleClose}
+      />,
+      <Link to="/profile">  <FlatButton
+        label="Submit"
+        primary={true}
+        keyboardFocused={true}
+        onClick={() => {
+          this.newPost(
+            this.state.post,
+            this.props.match.params.category,
+            this.state.title
+          );
+          this.handleClose();
+        }}
 
-        <div>   <input
-          onChange={e => this.setState({ title: e.target.value })}
-          type="text"
-          placeholder="title"
-        />
-          <input
-            placeholder="body"
-            onChange={e => this.setState({ post: e.target.value })}
-            type="text"
+      /> </Link>,
+    ];
+    return (
+      <div className="postContainer" >{this.props.loggedIn ?
+
+        <div  >
+          <h1>New {this.props.match.params.category} Post</h1>
+
+          <TextField onChange={e => this.setState({ title: e.target.value })}
+            hintText="Enter a Title..."
+            floatingLabelText="Title"
+            fullWidth={true}
+            floatingLabelFixed={true}
           />
 
-          <button
-            onClick={() => {
-              this.newPost(
-                this.state.post,
-                this.props.match.params.category,
-                this.state.title
-              );
-            }}
-          >
-            Submit
-        </button>
+          <div className="newPostBody" >
+            <TextField
+              onChange={e => this.setState({ post: e.target.value })}
+              hintText="What's on your mind?"
+              fullWidth={true}
+              multiLine={true}
+              rows={18}
+
+
+            />
+          </div>
+          <div>
+            <RaisedButton label="Submit Post" onClick={this.handleOpen} />
+            <Dialog
+              title="Dialog With Actions"
+              actions={actions}
+              modal={false}
+              open={this.state.open}
+              onRequestClose={this.handleClose}
+            >
+              Are you sure you want to submit this post?
+        </Dialog>
+          </div>
+
+
+
         </div> : <p>You are not logged in</p>}
       </div>
 

@@ -40,7 +40,7 @@ const addPost = (req, res, next) => {
         req.session.passport.user.picture,
         result[0].id
       ])
-      .then(() => console.log("post succesful"))
+      .then(() => console.log("post posted"))
       .catch(() => console.log("error add post"))
   }
   )

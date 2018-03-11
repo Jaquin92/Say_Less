@@ -53,9 +53,10 @@ class App extends Component {
                 </DropDownMenu>)}
 
 
-              <div className="news">  hello</div>
-            </div>
 
+              {!this.props.onNewPost && <div className="news">  hello</div>}
+
+            </div>
 
 
 

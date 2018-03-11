@@ -21,7 +21,6 @@ class Climate extends Component {
       .get("/api/get/Climate")
       .then(response => {
 
-
         this.setState({ allPosts: response.data })
         let newest = this.state.allPosts.sort((a, b) => {
           return b.id - a.id

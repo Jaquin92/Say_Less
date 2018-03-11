@@ -69,7 +69,14 @@
   border-radius: 50px;
 }
 
+.newPostBody{
+  border: solid .5px #F9F9F9;
+  height: 450px;
+  width: 100%;
+}
+
 .postContainer {
+  margin-top:90px;
   width: 70%;
 }
 
