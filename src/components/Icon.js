@@ -15,7 +15,7 @@ class Icon extends Component {
         {this.props.loggedIn && (
           <div className="icon">
             <img className="iconPhoto" src={this.props.user.img} alt="" />
-            {this.props.user.name}
+            <span className="iconName" >{this.props.user.name}</span>
             <IconMenu
               iconButtonElement={
                 <IconButton>
@@ -26,9 +26,28 @@ class Icon extends Component {
               targetOrigin={{ horizontal: "left", vertical: "top" }}
             >
               <Link to="/profile">
-                {" "}
-                <MenuItem primaryText="Profile" />{" "}
+                <MenuItem primaryText="Profile" />
               </Link>
+
+              <span className="responseMenu" >
+                <Link to="/">
+                  <MenuItem primaryText="Home" />
+                </Link>
+                <Link to="/Software">
+                  <MenuItem primaryText="Software" />
+                </Link>
+                <Link to="/Hardware">
+                  <MenuItem primaryText="Hardware" />
+                </Link>
+                <Link to="/Crypto">
+                  <MenuItem primaryText="Crypto" />
+                </Link>
+                <Link to="/Climate">
+                  <MenuItem primaryText="Climate" />
+                </Link>
+
+              </span>
+
               <Link to="/">
                 <MenuItem
                   onClick={() => {

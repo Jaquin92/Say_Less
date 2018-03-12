@@ -157,11 +157,15 @@ class Post extends Component {
                     subtitle={<Moment fromNow >{new Date(item.time).toLocaleString()}</Moment>}
 
                     avatar={item.img}
-                > Likes: {this.state.likes.length}</CardHeader>
+                >Likes: {this.state.likes.length} </CardHeader>
                 <CardTitle title={item.title} className="postTitle" />
                 <CardText className="postBody" >
-                    {item.body}
+
+                    <div>{item.body}</div>
+
+
                 </CardText>
+
                 <CardActions>
                     {this.props.loggedIn && <div>{like}</div>}
 

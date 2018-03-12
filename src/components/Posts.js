@@ -69,17 +69,32 @@ class Posts extends Component {
 
 
     let posts = this.state.posts.map((item, i) => {
-      let path = <Link to={`/entry/${item.id}`} > {item.title}  </Link>
-      return <Card key={i} >
-        <CardHeader
-          title={item.name}
-          subtitle={path}
-          avatar={item.img}
-          actAsExpander={true}
 
-        />
+      let path = <Link to={`/entry/${item.id}`} > {item.title.toUpperCase()}  </Link>
+      let userName = <Link to={`/user/${item.userid}`}>{item.name}</Link>
+      return <div className="thumbRow"  >
 
-      </Card>
+
+
+        <div className="inThumb" >
+          <img className="postThumb" src={item.img} alt="" />
+
+
+          <div className="secondInThumb" >
+            <span className="categoryThumb" >{item.category}</span>
+            <span className="nameThumb" >{userName}</span>
+            <span className="titleThumb"  >{path}</span>
+          </div>
+
+        </div>
+
+        <div className="thirdInThumb"  >
+          <span> <Moment fromNow >{new Date(item.time).toLocaleString()}</Moment>
+          </span>
+
+          <span> Likes {item.rating}</span>  </div>
+
+      </div>
     })
     return <div >
       <div className="postRow">

@@ -2,7 +2,8 @@ const axios = require("axios");
 require("dotenv").config();
 
 const news = (req, res) => {
-  axios.get("https://newsapi.org/v2/top-headlines?country=us&apiKey=ad6e78e181474f219261787c1447ff90").then(response => res.status(200).send(response.data)).catch(() => console.log("couldnt get news"))
+
+  axios.get("https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=ad6e78e181474f219261787c1447ff90").then(response => res.status(200).send(response.data)).catch(() => console.log("couldnt get news"))
 }
 
 const checkUser = (req, res, next) => {

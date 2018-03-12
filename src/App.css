@@ -6,6 +6,7 @@
   align-items: flex-end;
   border: solid 0.5px #F9F9F9;
   margin:0px 120px;
+  
 }
 
 .logo {
@@ -28,17 +29,13 @@
   display: flex;
   justify-content: space-around;
 }
-.postThumb {
-  margin-left: 3px;
-  height: 60px;
-  border-radius: 50px;
-}
+
 
 
 
 .postRow {
   display: flex;
-  height: 90px;
+  height: 60px;
   justify-content: space-between;
   align-items: flex-end;
 }
@@ -74,14 +71,16 @@
   height: 450px;
   width: 100%;
 }
-
+.profileContainer{
+  width: 70%;
+}
 .postContainer {
-  margin-top:90px;
+  margin-top:60px;
   width: 70%;
 }
 
 .profilePic {
-  border-radius: 50px;
+  border-radius: 10px;
   height: 50px;
   width: 50px;
 }
@@ -92,7 +91,7 @@
 
 }
 .newPost {
-  margin-top: 90px;
+  margin-top: 60px;
   margin-left: 80px;
   background-color: #F9F9F9;
   /* width:80%; */
@@ -119,10 +118,19 @@
 }
 
 .news{
-  height: 800px;
-  border: solid #eaf0f9 1px;
+  height: 1200px;
  margin:10px 0px 0px 80px;
+ overflow: scroll; 
+}
+
+.newsPic{
  
+  width: 150px;
+}
+
+ a{
+  color: black;
+  text-decoration: none;
 }
 
 .postNav{
@@ -164,4 +172,137 @@
   display: flex;
   width: 150px;
   justify-content: space-between;
+}
+
+.thumbRow{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border: solid .5px #eaf0f9;
+  height: 70px;
+}
+
+.inThumb{
+  display: flex;
+  height:100%;
+}
+
+.postThumb {
+  margin-left: 3px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.secondInThumb{
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  justify-content:space-around;
+  margin-left: 5px;
+}
+
+.thirdInThumb{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;;
+  height: 100%;
+  width: 200px;
+}
+
+.categoryThumb{
+background-color: #eaf0f9;
+font-size: 14px;
+padding: 2px;
+}
+
+.nameThumb{
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.titleThumb{
+  
+  font-size: 16px;
+  font-weight: bolder;
+}
+/* .thumbName{
+  height: 100%;
+  display: flex;
+  align-items: center;
+} */
+
+
+@media (max-width:1024px) {
+  .constant {
+    display: flex;
+    padding: 0px 120px;
+  
+  }
+
+  .news{
+    display: none;
+  }
+
+  .postContainer{
+    width: 100%;
+  }
+
+  .profileContainer{
+    width: 100%;
+  }
+  .sidebar{
+    display: none;
+  }
+
+  .newPost {
+    display: none;
+    
+  }
+  .iconName{
+    display: none;
+  }
+  
+}
+
+@media (max-width:850px){
+  .nav{
+    display: none;
+  }
+  .thirdInThumb{
+    display: none;
+  }
+  .iconName{
+    display: flex;
+  }
+}
+
+@media(min-width:850px){
+  .responseMenu{
+    display: none;
+  }
+
+}
+
+@media(max-width:700px){
+
+  .constant {
+    display: flex;
+    padding: 0px 10px;
+  
+  }
+  .postContainer {
+    margin-top:0px;
+    width: 100%;
+  }
+  .Header {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border: solid 0.5px #F9F9F9;
+    margin:0px 0px;
+    
+  }
+  
 }

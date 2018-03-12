@@ -13,7 +13,7 @@ class Profile extends Component {
 
   render() {
     return (
-      <div className="postContainer">
+      <div className="profileContainer">
         {this.props.loggedIn ? (
           <div>
             <Posts />

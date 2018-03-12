@@ -6,17 +6,40 @@ import MenuItem from "material-ui/MenuItem";
 import routes from "./routes";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
-
+import axios from 'axios'
 import "./App.css";
 
 class App extends Component {
+  constructor() {
+    super()
+
+    this.state = { news: [] }
+  }
 
   componentDidMount() {
+    axios.get("/api/news").then(response => {
 
+      this.setState({ news: response.data.articles })
+      console.log(response.data.articles)
+
+    }).catch(() => console.log("no news"))
   }
 
   handleChange = (event, index, value) => this.setState({ value });
   render() {
+
+    let news = this.state.news.map((item, i) => {
+      if (item.urlToImage) {
+        return <span>
+          <img className="newsPic" src={item.urlToImage
+          } alt="" /> <br />
+
+          <a key={i} href={item.url}>{item.title}</a>  <br /> <br /> </span>
+      }
+
+
+    })
+
     return (
       <div>
         <MuiThemeProvider>
@@ -54,7 +77,7 @@ class App extends Component {
 
 
 
-              {!this.props.onNewPost && <div className="news">  hello</div>}
+              {!this.props.onNewPost && <div className="news"> <h3>What's Happening?</h3>  {news}</div>}
 
             </div>
 
