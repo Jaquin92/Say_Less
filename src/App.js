@@ -20,9 +20,12 @@ class App extends Component {
     axios.get("/api/news").then(response => {
 
       this.setState({ news: response.data.articles })
-      console.log(response.data.articles)
+
 
     }).catch(() => console.log("no news"))
+  }
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
   }
 
   handleChange = (event, index, value) => this.setState({ value });
@@ -31,7 +34,7 @@ class App extends Component {
     let news = this.state.news.map((item, i) => {
       if (item.urlToImage) {
         return <span>
-          <img className="newsPic" src={item.urlToImage
+          <img key={i} className="newsPic" src={item.urlToImage
           } alt="" /> <br />
 
           <a key={i} href={item.url}>{item.title}</a>  <br /> <br /> </span>
@@ -65,7 +68,7 @@ class App extends Component {
                     <MenuItem value={2} primaryText="Software" />
                   </Link>
                   <Link to="/post/Hardware">
-                    <MenuItem value={2} primaryText="Hardware" />
+                    <MenuItem value={3} primaryText="Hardware" />
                   </Link>
                   <Link to="/post/Crypto">
                     <MenuItem value={4} primaryText="Crypto" />

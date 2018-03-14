@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
+
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
@@ -22,13 +23,27 @@ class Post extends Component {
             commentInput: "",
             comments: [],
             likes: [],
-            liked: false
+            liked: false,
+            edit: false,
         }
     }
 
     componentDidMount() {
 
-        axios.get(`/entry/${this.props.match.params.id}`).then(response => this.setState({ post: response.data, rating: response.data[0].rating })).catch(() => console.log("error on axios Post component"))
+        axios.get(`/entry/${this.props.match.params.id}`).then(response => {
+            this.setState({ post: response.data, rating: response.data[0].rating })
+
+
+
+
+
+
+            if (this.props.user.id == this.state.post[0].authid) {
+
+                this.setState({ edit: true })
+            }
+        }
+        ).catch(() => console.log("error on axios Post component"))
 
         axios.get(`/comments/${this.props.match.params.id}`).then(response => {
             this.setState({ comments: response.data })
@@ -45,6 +60,10 @@ class Post extends Component {
                 this.setState({ liked: true })
             }
         }).catch("no likes")
+
+
+
+
 
     }
 
@@ -131,6 +150,9 @@ class Post extends Component {
             like = <FlatButton onClick={() => this.changeRating()} label="Like" />
         }
 
+
+
+
         let comments = this.state.comments.map((item, i) => {
 
             return <CardHeader key={i}
@@ -167,7 +189,12 @@ class Post extends Component {
                 </CardText>
 
                 <CardActions>
-                    {this.props.loggedIn && <div>{like}</div>}
+                    {this.props.loggedIn && <div>{like}
+
+                        {this.state.edit && <Link to={`/edit/${this.props.match.params.id}`}  > <FlatButton label="Edit" />  </Link>}
+
+
+                    </div>}
 
 
                 </CardActions>

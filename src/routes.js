@@ -8,7 +8,8 @@ import Climate from "./components/categories/Climate";
 import AddPost from "./components/newPost";
 import Profile from "./components/Profile";
 import Post from "./components/Post";
-import User from "./components/User"
+import User from "./components/User";
+import Edit from "./components/Edit";
 
 export default (
   <Switch>
@@ -22,5 +23,6 @@ export default (
     <Route path="/post/:category" component={AddPost} />
     <Route path="/entry/:id" component={Post} />
     <Route path="/user/:id" component={User} />
+    <Route path="/edit/:id" component={Edit} />
   </Switch>
 );

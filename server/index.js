@@ -9,6 +9,7 @@ const strategy = require("../strategy");
 require("dotenv").config();
 
 const {
+  editPost,
   news,
   removeLike,
   getComments,
@@ -105,6 +106,7 @@ app.put("/api/changeRating", changeRate)
 app.get("/api/postLikes/:id", postLikes)
 app.put("/api/like/:id", removeLike);
 app.get("/api/liked/:id", getUserLikedPosts)
+app.put("/api/edit", editPost)
 
 
 let port = 3002;

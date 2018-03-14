@@ -21,13 +21,16 @@ class Posts extends Component {
   }
 
   componentDidMount() {
+    this.props.getPosts();
+    this.props.getUser();
+
 
 
     axios.get(`/api/liked/${this.props.user.id}`).then(response => {
       this.setState({ likedPosts: response.data, myPosts: this.props.userPosts, posts: this.props.userPosts })
 
 
-      console.log(this.state)
+
 
     })
 

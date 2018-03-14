@@ -41,10 +41,10 @@ const addPost = (req, res, next) => {
         req.session.passport.user.picture,
         result[0].id
       ])
-      .then(() => console.log("post posted"))
-      .catch(() => console.log("error add post"))
+      .then(response => res.status(200).send(response))
+      .catch((err) => console.log(err))
   }
-  )
+  ).catch(console.log)
 }
 
 
@@ -224,7 +224,19 @@ const getUserLikedPosts = (req, res) => {
 }
 
 
+const editPost = (req, res) => {
+  const dbInstance = req.app.get("db");
+
+
+  dbInstance.edit_post([req.body.title, req.body.post, req.body.id]).then(result => {
+
+    res.status(200).send()
+  }).catch(() => console.log("couldnt edit post"))
+
+}
+
 module.exports = {
+  editPost: editPost,
   getUserLikedPosts: getUserLikedPosts,
   userProfile: userProfile,
   news: news,

@@ -1,0 +1,1 @@
+UPDATE posts SET title = $1, body = $2 WHERE id = $3;

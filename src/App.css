@@ -5,8 +5,21 @@
   justify-content: space-between;
   align-items: flex-end;
   border: solid 0.5px #F9F9F9;
-  margin:0px 120px;
+  /* margin:0px 120px; */
   
+}
+
+.constant {
+  display: flex;
+  padding: 0px 120px;
+
+}
+
+.double{
+  
+  margin:0px 120px;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .logo {
@@ -75,7 +88,7 @@
   width: 70%;
 }
 .postContainer {
-  margin-top:60px;
+  /* margin-top:60px; */
   width: 70%;
 }
 
@@ -85,11 +98,7 @@
   width: 50px;
 }
 
-.constant {
-  display: flex;
-  padding: 0px 120px;
 
-}
 .newPost {
   margin-top: 60px;
   margin-left: 80px;
@@ -297,6 +306,7 @@ padding: 2px;
   }
   .Header {
     height: 100px;
+    padding: 0px 10px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -304,5 +314,16 @@ padding: 2px;
     margin:0px 0px;
     
   }
+  .double{
+    height: 100px;
+    display: flex;
+   
+    margin:0px 0px;
+  }
+
+  .doubleImage{
+    display: none;
+  }
+    
   
 }

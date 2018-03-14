@@ -24,7 +24,7 @@ class AddPost extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.onNewPost)
+
     this.props.newPosts()
   }
   componentWillUnmount() {
@@ -45,8 +45,12 @@ class AddPost extends Component {
 
     axios
       .post("/api/post", post)
-      .then(() => console.log("post successful"))
-      .then(() => {
+      .then(response => {
+
+        this.props.history.push(`/entry/${response.data[0].id}`)
+
+      })
+      .catch(() => {
         console.log("error on newPost");
       });
     console.log(this.state);
@@ -58,7 +62,7 @@ class AddPost extends Component {
         primary={true}
         onClick={this.handleClose}
       />,
-      <Link to="/profile">  <FlatButton
+      <FlatButton
         label="Submit"
         primary={true}
         keyboardFocused={true}
@@ -71,7 +75,7 @@ class AddPost extends Component {
           this.handleClose();
         }}
 
-      /> </Link>,
+      />,
     ];
     return (
       <div className="postContainer" >{this.props.loggedIn ?

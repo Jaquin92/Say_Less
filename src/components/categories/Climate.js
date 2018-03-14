@@ -55,7 +55,7 @@ class Climate extends Component {
 
       let path = <Link to={`/entry/${item.id}`} > {item.title.toUpperCase()}  </Link>
       let userName = <Link to={`/user/${item.userid}`}>{item.name}</Link>
-      return <div className="thumbRow"  >
+      return <div key={i} className="thumbRow"  >
 
 
 
