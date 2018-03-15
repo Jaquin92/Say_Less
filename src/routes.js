@@ -10,6 +10,7 @@ import Profile from "./components/Profile";
 import Post from "./components/Post";
 import User from "./components/User";
 import Edit from "./components/Edit";
+import SearchResults from "./components/searchResults";
 
 export default (
   <Switch>
@@ -24,5 +25,6 @@ export default (
     <Route path="/entry/:id" component={Post} />
     <Route path="/user/:id" component={User} />
     <Route path="/edit/:id" component={Edit} />
+    <Route path="/search/:id" component={SearchResults} />
   </Switch>
 );

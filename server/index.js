@@ -8,7 +8,9 @@ const Auth0Strategy = require("passport-auth0");
 const strategy = require("../strategy");
 require("dotenv").config();
 
+
 const {
+  search,
   editPost,
   news,
   removeLike,
@@ -29,6 +31,8 @@ const {
   getUserLikedPosts
 } = require("./controller");
 const app = express();
+
+app.use(express.static(`${__dirname}/../build`))
 
 app.use(
   session({
@@ -87,7 +91,7 @@ app.get("/me", (req, res, next) => {
       img: req.user.picture
     };
   }
-  res.redirect("http://localhost:3000/#/profile");
+  res.redirect("http://localhost:3002/#/profile");
 });
 
 app.get("/api/profile/:id", userProfile)
@@ -107,8 +111,14 @@ app.get("/api/postLikes/:id", postLikes)
 app.put("/api/like/:id", removeLike);
 app.get("/api/liked/:id", getUserLikedPosts)
 app.put("/api/edit", editPost)
+app.get("/api/search/:search", search)
 
 
 let port = 3002;
+const path = require('path');
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'))
+})
 
 app.listen(port, () => console.log(`listening on port ${port}`));

@@ -235,7 +235,20 @@ const editPost = (req, res) => {
 
 }
 
+const search = (req, res) => {
+  const dbInstance = req.app.get("db");
+  let search = '%' + req.params.search + '%'
+
+  dbInstance.search_posts(search).then(result => {
+
+    res.status(200).send(result)
+  }).catch(() => console.log(" couldnt search"))
+
+
+}
+
 module.exports = {
+  search: search,
   editPost: editPost,
   getUserLikedPosts: getUserLikedPosts,
   userProfile: userProfile,

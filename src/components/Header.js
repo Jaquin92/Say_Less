@@ -1,13 +1,17 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getUser } from "../ducks/reducer"
 import Icon from "./Icon";
 
-import { Link } from "react-router-dom";
+
 class Header extends Component {
   constructor() {
     super()
+
+    this.state = {
+      search: ""
+    }
 
   }
 
@@ -52,7 +56,10 @@ class Header extends Component {
 
         </div>
 
-        <img className="doubleImage" src="" alt="" />
+        <div className="search" >   <input onChange={e => this.setState({ search: e.target.value })} type="text" />
+          <Link to={`/search/${this.state.search}`}> <button>
+            search</button></Link>
+        </div>
 
       </div>
 

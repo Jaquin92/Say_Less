@@ -9,6 +9,13 @@
   
 }
 
+.search{
+  display: flex;
+  align-items: flex-end;
+  height: 90px;
+  margin: 0px 60px;
+}
+
 .constant {
   display: flex;
   padding: 0px 120px;
@@ -16,8 +23,8 @@
 }
 
 .double{
-  
   margin:0px 120px;
+  margin:0px 60px;
   flex-direction: column;
   overflow: hidden;
 }

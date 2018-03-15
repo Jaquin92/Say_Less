@@ -30,7 +30,7 @@ class Edit extends Component {
 
         axios.get(`/entry/${this.props.match.params.id}`).then(response => {
 
-            this.setState({ postToEdit: response.data[0] })
+            this.setState({ postToEdit: response.data[0], title: response.data[0].title, post: response.data[0].body })
             console.log(this.state.postToEdit.title)
         }
         ).catch(() => console.log("error getting previous post"))
