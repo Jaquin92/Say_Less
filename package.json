@@ -2,7 +2,7 @@
   "name": "say_less",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3002",
+  "proxy": "http://167.99.54.86",
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
