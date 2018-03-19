@@ -78,7 +78,7 @@ class Hardware extends Component {
       </div>
     })
     return <div className="postContainer"  >
-
+      <div className="search" > <h1> HARDWARE </h1> </div>
       <div className="postNav" >
         <span>Discussions</span>
         <div className="sort" >  <div className="sortButton" onClick={() => this.sortPostsNew()} >Latest</div>

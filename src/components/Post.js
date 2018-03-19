@@ -166,69 +166,77 @@ class Post extends Component {
 
 
 
-        let item = this.state.post[0];
+        let item = this.state.post[0]
+        let link;
+        if (this.state.post[0]) {
+            link = <Link to={`/user/${this.state.post[0].userid}`}> {item.name}</Link>
+        }
 
 
 
 
 
-        return <div className="postContainer" >
-            {this.state.post[0] ? <Card  >
-                <CardHeader
-                    title={item.name}
-                    subtitle={<Moment fromNow >{new Date(item.time).toLocaleString()}</Moment>}
 
-                    avatar={item.img}
-                >Likes: {this.state.likes.length} </CardHeader>
-                <CardTitle title={item.title} className="postTitle" />
-                <CardText className="postBody" >
-
-                    <div>{item.body}</div>
+        return (
 
 
-                </CardText>
+            <div className="postContainer" >
+                {this.state.post[0] ? <Card  >
+                    <CardHeader
+                        title={link}
+                        subtitle={<Moment fromNow >{new Date(item.time).toLocaleString()}</Moment>}
 
-                <CardActions>
-                    {this.props.loggedIn && <div>{like}
+                        avatar={item.img}
+                    >Likes: {this.state.likes.length} </CardHeader>
+                    <CardTitle title={item.title.toUpperCase()} className="postTitle" />
+                    <CardText className="postBody" >
 
-                        {this.state.edit && <Link to={`/edit/${this.props.match.params.id}`}  > <FlatButton label="Edit" />  </Link>}
-
-
-                    </div>}
-
-
-                </CardActions>
-            </Card> : <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="" className="loading" />}
-            {this.props.loggedIn &&
-                <div><TextField
-                    onChange={e => this.setState({ commentInput: e.target.value })}
-                    hintText="Leave a comment..."
-
-                    value={this.state.commentInput}
-                    fullWidth={true}
-                    multiLine={true}
-                    rows={1}
-                    rowsMax={8}
-                />
-
-                    <RaisedButton onClick={() => this.addComment(this.state.commentInput)
-                    } label="Comment" fullWidth={true} /></div>
-            }
-            <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
-                <CardHeader
-                    title="Comments"
-                    actAsExpander={true}
-                    showExpandableButton={true}
-                />
-
-                <CardText expandable={true}>
-                    {comments}
-                </CardText>
-
-            </Card>
+                        <div>{item.body}</div>
 
 
-        </div>
+                    </CardText>
+
+                    <CardActions>
+                        {this.props.loggedIn && <div>{like}
+
+                            {this.state.edit && <Link to={`/edit/${this.props.match.params.id}`}  > <FlatButton label="Edit" />  </Link>}
+
+
+                        </div>}
+
+
+                    </CardActions>
+                </Card> : <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="" className="loading" />}
+                {this.props.loggedIn &&
+                    <div><TextField
+                        onChange={e => this.setState({ commentInput: e.target.value })}
+                        hintText="Leave a comment..."
+
+                        value={this.state.commentInput}
+                        fullWidth={true}
+                        multiLine={true}
+                        rows={1}
+                        rowsMax={8}
+                    />
+
+                        <RaisedButton onClick={() => this.addComment(this.state.commentInput)
+                        } label="Comment" fullWidth={true} /></div>
+                }
+                <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
+                    <CardHeader
+                        title="Comments"
+                        actAsExpander={true}
+                        showExpandableButton={true}
+                    />
+
+                    <CardText expandable={true}>
+                        {comments}
+                    </CardText>
+
+                </Card>
+
+
+            </div>)
     }
 }
 

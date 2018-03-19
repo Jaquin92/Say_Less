@@ -25,6 +25,6 @@ export default (
     <Route path="/entry/:id" component={Post} />
     <Route path="/user/:id" component={User} />
     <Route path="/edit/:id" component={Edit} />
-    <Route path="/search/:id" component={SearchResults} />
+    <Route path="/search" component={SearchResults} />
   </Switch>
 );

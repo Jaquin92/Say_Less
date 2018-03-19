@@ -7,6 +7,7 @@ const GET_USER = "GET_USER";
 const GET_LIKES = "GET_LIKES";
 const SIGN_OUT = "SIGN_OUT";
 const NEW_POST = "NEW_POST";
+const SEARCH = "SEARCH";
 
 
 // INITIAL STATE 
@@ -19,7 +20,8 @@ const initialState = {
   isLoading: false,
   didErr: false,
   errMessage: null,
-  onNewPost: false
+  onNewPost: false,
+  searchResults: []
 };
 
 // ACTION CREATORS
@@ -79,6 +81,13 @@ export function signOut() {
   };
 }
 
+export function search(par) {
+
+  return {
+    type: SEARCH,
+    payload: axios.get(`/api/search/${par}`).then(response => response.data).catch(err => console.log(err))
+  }
+}
 
 
 export default function reducer(state = initialState, action) {
@@ -150,6 +159,24 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         didErr: true
       });
+
+
+    case `${SEARCH}_PENDING`:
+      return Object.assign({}, state, { isLoading: true });
+
+    case `${SEARCH}_FULFILLED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        searchResults: action.payload
+      });
+
+    case `${SEARCH}_REJECTED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        didErr: true
+      });
+
+
 
     default:
       return state;

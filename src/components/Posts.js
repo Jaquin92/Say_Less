@@ -100,15 +100,18 @@ class Posts extends Component {
       </div>
     })
     return <div >
-      <div className="postRow">
-        <div>
-          <img className="profilePic" src={this.props.user.img} alt="" />{" "}
-          {this.props.user.name}{" "}
+      <div className="profileCard">
+        <div className="nameImg" >
+          {this.props.user.name}
+          <img className="profilePic" src={this.props.user.img} alt="" />
         </div>
 
-        <div className="likesPosts"  > <div onClick={() => this.myPosts()} >{this.props.userPosts.length}-Posts</div>
-          <div onClick={() => this.likedPosts()} >{this.props.userLikes.length}-Likes </div>
+        <div className="likesPosts"  > <button onClick={() => this.myPosts()} >{this.state.myPosts.length}-Posts</button>
+          <button onClick={() => this.likedPosts()} >{this.state.likedPosts.length}-Likes </button>
         </div>
+
+
+
 
       </div>
 

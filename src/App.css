@@ -1,19 +1,22 @@
 
+
 .Header {
   height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   border: solid 0.5px #F9F9F9;
-  /* margin:0px 120px; */
+  margin:0px 120px;
   
 }
 
 .search{
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: space-around;
   height: 90px;
   margin: 0px 60px;
+  
 }
 
 .constant {
@@ -48,6 +51,53 @@
   width: 400px;
   display: flex;
   justify-content: space-around;
+}
+
+.profileCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 250px;
+  width: 450px;
+  border: solid #F9F9F9 .5px;
+  margin: 5px 0px;
+}
+
+.profilePic {
+  display: flex;
+  margin-top: 10px;
+  height: 150px;
+  width: 150px;
+}
+
+.nameImg{
+  display: flex;
+  margin-top: 10px;
+  margin-left: 15px;
+  flex-direction: column;
+  font-weight: bolder;
+}
+.likesPosts{
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+  margin-left: 15px;
+  margin-bottom: 10px;
+  
+}
+
+button{
+  padding: 5px;
+  border-radius: 3px;
+}
+
+button:hover{
+  background-color: #F9F9F9;
+  cursor: pointer;
+}
+
+input{
+  height: 18px;
 }
 
 
@@ -86,6 +136,15 @@
   border-radius: 50px;
 }
 
+.iconHeader{
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+
+}
+
 .newPostBody{
   border: solid .5px #F9F9F9;
   height: 450px;
@@ -99,15 +158,11 @@
   width: 70%;
 }
 
-.profilePic {
-  border-radius: 10px;
-  height: 50px;
-  width: 50px;
-}
+
 
 
 .newPost {
-  margin-top: 60px;
+  margin-top:1px;
   margin-left: 80px;
   background-color: #F9F9F9;
   /* width:80%; */
@@ -115,6 +170,17 @@
   border-radius: 2px;
   
   
+}
+
+.sideBarImg{
+  height: 90px;
+  margin-left: 80px;
+  
+}
+
+.sayLess{
+  width:100%;
+  height: 100%;
 }
 
 .postBody{
@@ -135,7 +201,7 @@
 
 .news{
   height: 1200px;
- margin:10px 0px 0px 80px;
+ margin:0px 0px 0px 80px;
  overflow: scroll; 
 }
 
@@ -184,11 +250,7 @@
   background-color: #eaf0f9;
 }
 
-.likesPosts{
-  display: flex;
-  width: 150px;
-  justify-content: space-between;
-}
+
 
 .thumbRow{
   display: flex;
@@ -196,6 +258,7 @@
   align-items: flex-start;
   border: solid .5px #eaf0f9;
   height: 70px;
+  box-shadow: 1px 1px 1px #eaf0f9;
 }
 
 .inThumb{
@@ -292,12 +355,22 @@ padding: 2px;
     display: flex;
   }
 }
+@media (min-width:1024px){
+  .responseNewPost{
+    display: none !important;
+  }
+}
 
 @media(min-width:850px){
   .responseMenu{
-    display: none;
+    display: none !important;
   }
+}
 
+@media(max-width:850px){
+  .shortMenu{
+    display: none !important;
+  }
 }
 
 @media(max-width:700px){

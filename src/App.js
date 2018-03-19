@@ -54,7 +54,7 @@ class App extends Component {
 
 
             <div className="sidebar" >
-
+              <div className="sideBarImg"  > <img className="sayLess" src={require("./images/sayless.png")} alt="" /> </div>
               {this.props.loggedIn && !this.props.onNewPost && (
                 <DropDownMenu
                   value={1}

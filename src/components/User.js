@@ -64,7 +64,27 @@ class User extends Component {
         let posts = this.state.posts.map((item, i) => {
 
             let path = <Link to={`/entry/${item.id}`} > {item.title.toUpperCase()}  </Link>
-            let userName = <Link to={`/user/${item.userid}`}>{item.name}</Link>
+            let userName =
+
+                <div style={{ cursor: "pointer" }} onClick={() => {
+                    axios.get(`/api/profile/${item.userid}`)
+                        .then(result => {
+                            this.setState({ user: result.data[0], likes: result.data[1], myPosts: result.data[2], posts: result.data[2] })
+                            axios.get(`/api/liked/${this.state.user.authid}`).then(response => {
+                                this.setState({ likedPosts: response.data })
+
+
+                            })
+                        })
+                        .catch(() => console.log('error'))
+
+                }}  > {item.name}  </div>
+
+
+
+
+
+
             return <div className="thumbRow"  >
 
 
@@ -94,15 +114,18 @@ class User extends Component {
             <div className="profileContainer">
 
                 <div>
-                    <div className="postRow">
-                        <div>
-                            <img className="profilePic" src={this.state.user.img} alt="" />{" "}
-                            {this.state.user.name}{" "}
+                    <div className="profileCard">
+                        <div className="nameImg" >
+                            {this.state.user.name}
+                            <img className="profilePic" src={this.state.user.img} alt="" />
                         </div>
 
-                        <div className="likesPosts"  > <div onClick={() => this.userPosts()} >{this.state.posts.length}-Posts</div>
-                            <div onClick={() => this.likedPosts()} >{this.state.likes.length}-Likes </div>
+                        <div className="likesPosts"  > <button onClick={() => this.userPosts()} >{this.state.myPosts.length}-Posts</button>
+                            <button onClick={() => this.likedPosts()} >{this.state.likes.length}-Likes </button>
                         </div>
+
+
+
 
                     </div>
                     <div className="postNav" >

@@ -41,7 +41,7 @@ class AddPost extends Component {
 
 
   newPost(str, cat, tit) {
-    let post = { post: str, category: cat, title: tit };
+    let post = { post: str, category: cat, title: tit.toLowerCase() };
 
     axios
       .post("/api/post", post)
@@ -104,7 +104,7 @@ class AddPost extends Component {
           <div>
             <RaisedButton label="Submit Post" onClick={this.handleOpen} />
             <Dialog
-              title="Dialog With Actions"
+              title="Are you sure?"
               actions={actions}
               modal={false}
               open={this.state.open}

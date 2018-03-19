@@ -247,9 +247,22 @@ const search = (req, res) => {
 
 }
 
+function deletePost(req, res) {
+
+  const dbInstance = req.app.get("db");
+
+  dbInstance.delete_like(req.params.id).then(() => {
+    dbInstance.delete_post(req.params.id).then(() => {
+      res.status(200).send()
+    }).catch((err) => console.log(err))
+  })
+
+}
+
 module.exports = {
   search: search,
   editPost: editPost,
+  deletePost: deletePost,
   getUserLikedPosts: getUserLikedPosts,
   userProfile: userProfile,
   news: news,

@@ -13,6 +13,7 @@ const {
   search,
   editPost,
   news,
+  deletePost,
   removeLike,
   getComments,
   postComment,
@@ -72,7 +73,8 @@ app.get(
   passport.authenticate("auth0", {
     successRedirect: "/me",
     failureRedirect: "/login",
-    failureFlash: true
+    failureFlash: true,
+    connection: "github"
 
   })
 );
@@ -91,7 +93,7 @@ app.get("/me", (req, res, next) => {
       img: req.user.picture
     };
   }
-  res.redirect("http://localhost:3002/#/profile");
+  res.redirect("http://localhost:3000/#/profile");
 });
 
 app.get("/api/profile/:id", userProfile)
@@ -109,9 +111,10 @@ app.get("/comments/:id", getComments);
 app.put("/api/changeRating", changeRate)
 app.get("/api/postLikes/:id", postLikes)
 app.put("/api/like/:id", removeLike);
-app.get("/api/liked/:id", getUserLikedPosts)
-app.put("/api/edit", editPost)
-app.get("/api/search/:search", search)
+app.get("/api/liked/:id", getUserLikedPosts);
+app.put("/api/edit", editPost);
+app.get("/api/search/:search", search);
+app.delete("/api/delete/:id", deletePost);
 
 
 let port = 3002;

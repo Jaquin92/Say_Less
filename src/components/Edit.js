@@ -19,6 +19,7 @@ class Edit extends Component {
             category: "",
             title: "",
             open: false,
+            delOpen: false,
             postToEdit: []
         };
 
@@ -39,12 +40,23 @@ class Edit extends Component {
     componentWillUnmount() {
         this.props.leavingNewPost()
     }
+
+
+
     handleOpen = () => {
         this.setState({ open: true });
     };
 
     handleClose = () => {
         this.setState({ open: false });
+    };
+
+    handleDelOpen = () => {
+        this.setState({ delOpen: true });
+    };
+
+    handleDelClose = () => {
+        this.setState({ delOpen: false });
     };
 
 
@@ -64,6 +76,17 @@ class Edit extends Component {
             });
 
     }
+
+    deletePost() {
+        axios.delete(`/api/delete/${this.props.match.params.id}`).then(() => {
+            this.props.history.push("/profile")
+            console.log("it worked")
+        }).catch(err => console.log(err))
+    }
+
+
+
+
     render() {
         const actions = [
             <FlatButton
@@ -86,6 +109,24 @@ class Edit extends Component {
 
             />,
         ];
+        const destroy = [
+            <FlatButton
+                label="Cancel"
+                primary={true}
+                onClick={this.handleDelClose}
+            />,
+            <FlatButton
+                label="Submit"
+                primary={true}
+                keyboardFocused={true}
+                onClick={() => {
+                    this.deletePost()
+                    this.handleDelClose();
+                }}
+
+            />,
+        ];
+
         return (
             <div className="postContainer" >{this.props.loggedIn && this.state.postToEdit.title ?
 
@@ -117,7 +158,7 @@ class Edit extends Component {
                     <div>
                         <RaisedButton label="Submit Post" onClick={this.handleOpen} />
                         <Dialog
-                            title="Dialog With Actions"
+                            title="Are you sure?"
                             actions={actions}
                             modal={false}
                             open={this.state.open}
@@ -125,6 +166,22 @@ class Edit extends Component {
                         >
                             Are you sure you want to submit this post?
         </Dialog>
+
+
+
+
+                        <RaisedButton label="Delete Post" onClick={this.handleDelOpen} />
+
+                        <Dialog
+                            title="Are you sure?"
+                            actions={destroy}
+                            modal={false}
+                            open={this.state.delOpen}
+                            onRequestClose={this.handleDelClose}
+                        >
+                            Are you sure you want to Delete this post?
+        </Dialog>
+
                     </div>
 
 
