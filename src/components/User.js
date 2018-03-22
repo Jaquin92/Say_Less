@@ -120,8 +120,8 @@ class User extends Component {
                             <img className="profilePic" src={this.state.user.img} alt="" />
                         </div>
 
-                        <div className="likesPosts"  > <button onClick={() => this.userPosts()} >{this.state.myPosts.length}-Posts</button>
-                            <button onClick={() => this.likedPosts()} >{this.state.likes.length}-Likes </button>
+                        <div className="likesPosts"  > <button onClick={() => this.userPosts()} >Posts</button>
+                            <button onClick={() => this.likedPosts()} >Likes </button>
                         </div>
 
 

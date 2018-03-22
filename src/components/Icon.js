@@ -158,7 +158,7 @@ class Icon extends Component {
         )}
 
         {!this.props.loggedIn && (
-          <a href="http://localhost:3002/login">Login</a>
+          <a href="http://167.99.54.86/login">Login</a>
         )}
       </div>
     );

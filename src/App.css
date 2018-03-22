@@ -89,6 +89,10 @@
 button{
   padding: 5px;
   border-radius: 3px;
+  border: none;
+  font-size: 14px;
+  font-weight: bolder;
+  padding: 5px;
 }
 
 button:hover{
