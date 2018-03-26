@@ -74,7 +74,7 @@ app.get(
     successRedirect: "/me",
     failureRedirect: "/login",
     failureFlash: true,
-    connection: "github"
+
 
   })
 );
