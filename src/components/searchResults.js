@@ -46,15 +46,14 @@ class SearchResults extends Component {
         return (
 
             <div className="postContainer" >
-                <div className="search" > <h1> SEARCH RESULTS</h1> </div>
+                <div className="search" > <h1> SEARCH</h1> </div>
                 {this.props.searchResults.length > 0 ?
                     <div >
 
 
                         <div className="postNav" >
-                            <span>Discussions</span>
-                            <div className="sort" >  <div className="sortButton" onClick={() => this.sortPostsNew()} >Latest</div>
-                                <div className="sortButton" onClick={() => this.sortPostsPop()}   >Popular</div> </div>
+                            <span>Search Results</span>
+
 
                         </div>
 

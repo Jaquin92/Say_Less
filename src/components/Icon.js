@@ -33,6 +33,8 @@ class Icon extends Component {
             <IconMenu
               className="responseMenu"
 
+
+              onBlur={() => this.setState({ open: false })}
               open={this.state.open}
               onClick={() => { this.setState({ open: true }) }}
               onItemClick={() => this.setState({ open: false })}
@@ -72,6 +74,7 @@ class Icon extends Component {
                   <MenuItem primaryText="New Post" />
 
                 }
+                onBlur={() => this.setState({ open: false })}
                 anchorOrigin={{ horizontal: "left", vertical: "top" }}
                 targetOrigin={{ horizontal: "left", vertical: "top" }}
               >
@@ -131,6 +134,7 @@ class Icon extends Component {
                   <MenuItem primaryText="New Post" />
 
                 }
+                onBlur={() => this.setState({ open: false })}
                 anchorOrigin={{ horizontal: "left", vertical: "top" }}
                 targetOrigin={{ horizontal: "left", vertical: "top" }}
               >
@@ -158,7 +162,36 @@ class Icon extends Component {
         )}
 
         {!this.props.loggedIn && (
-          <a href="http://167.99.54.86:3002/login">Login</a>
+
+          <div>
+            <a href="http://167.99.54.86:3002/login">Login</a>
+
+            <IconMenu
+
+              className="logInResponseMenu"
+
+              open={this.state.open}
+              onBlur={() => this.setState({ open: false })}
+              onClick={() => { this.setState({ open: true }) }}
+              onItemClick={() => this.setState({ open: false })}
+              iconButtonElement={
+                <IconButton>
+                  <MoreVertIcon />
+                </IconButton>
+              }
+
+              anchorOrigin={{ horizontal: "left", vertical: "top" }}
+              targetOrigin={{ horizontal: "left", vertical: "top" }}
+            >
+
+
+              <MenuItem > <Link to="/">Home </Link> </MenuItem>
+              <MenuItem > <Link to="/Software"> Software </Link> </MenuItem>
+              <MenuItem > <Link to="/Hardware"> Hardware </Link> </MenuItem>
+              <MenuItem > <Link to="/Crypto"> Crypto </Link> </MenuItem>
+              <MenuItem > <Link to="/Climate"> Climate </Link> </MenuItem>
+            </IconMenu>
+          </div>
         )}
       </div>
     );

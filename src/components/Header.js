@@ -4,6 +4,11 @@ import { connect } from "react-redux";
 import { getUser, search } from "../ducks/reducer";
 import TextField from 'material-ui/TextField';
 import Icon from "./Icon";
+import IconMenu from "material-ui/IconMenu";
+import MenuItem from "material-ui/MenuItem";
+import IconButton from "material-ui/IconButton";
+import DropDownMenu from "material-ui/DropDownMenu";
+import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
 
 
 class Header extends Component {
@@ -59,7 +64,8 @@ class Header extends Component {
         <div className="iconHeader">
           <Icon />
 
-          <div  >
+
+          <div className="searchBar"  >
 
             <TextField
               hintText="Search..."

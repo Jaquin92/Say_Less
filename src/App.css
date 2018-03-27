@@ -273,7 +273,7 @@ input{
 .postThumb {
   margin-left: 3px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 2px;
 }
 
 .secondInThumb{
@@ -348,7 +348,15 @@ padding: 2px;
   
 }
 
-@media (max-width:850px){
+@media(max-width:1080px){
+  .searchBar{
+    width:200px;
+    display:flex;
+    align-items: flex-end;
+  }
+}
+
+@media (max-width:960px){
   .nav{
     display: none;
   }
@@ -365,20 +373,34 @@ padding: 2px;
   }
 }
 
-@media(min-width:850px){
+@media(min-width:960px){
   .responseMenu{
     display: none !important;
   }
 }
 
-@media(max-width:850px){
+@media(max-width:9600px){
   .shortMenu{
     display: none !important;
   }
 }
 
 @media(max-width:700px){
-
+  .searchBar{
+    width:200px;
+    display:flex;
+    align-items: flex-end;
+  }
+button{
+  margin-bottom: 5px;
+}
+  
+.iconHeader{
+  width: 30px;
+}
+  .thumbRow{
+    height:100px;
+  }
   .constant {
     display: flex;
     padding: 0px 10px;
@@ -410,4 +432,10 @@ padding: 2px;
   }
     
   
+}
+
+@media(min-width:700px){
+  .logInResponseMenu{
+    display: none !important;
+  }
 }
