@@ -67,6 +67,8 @@ const getUser = (req, res) => {
       id: req.session.passport.user.id
     };
     res.status(200).send(user);
+  } else {
+    res.status(200).send("nothing")
   }
 };
 

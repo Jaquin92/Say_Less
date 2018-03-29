@@ -63,6 +63,8 @@ export function getPosts() {
 }
 
 export function getUser() {
+
+  console.log("error in reducer")
   return {
     type: GET_USER,
     payload: axios
@@ -70,6 +72,8 @@ export function getUser() {
       .then(response => response.data)
       .catch(err => err.message)
   };
+
+
 }
 export function signOut() {
   return {
@@ -118,11 +122,20 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, { isLoading: true });
 
     case `${GET_USER}_FULFILLED`:
-      return Object.assign({}, state, {
-        isLoading: false,
-        user: action.payload,
-        loggedIn: true
-      });
+      if (action.payload == "nothing") {
+        return Object.assign({}, state, {
+          isLoading: false,
+          loggedIn: false
+        })
+      } else {
+        return Object.assign({}, state, {
+
+          isLoading: false,
+          user: action.payload,
+          loggedIn: true
+        });
+      }
+
 
     case `${GET_USER}_REJECTED`:
       return Object.assign({}, state, {

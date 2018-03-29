@@ -58,6 +58,8 @@ class Icon extends Component {
               <MenuItem > <Link to="/Hardware"> Hardware </Link> </MenuItem>
               <MenuItem > <Link to="/Crypto"> Crypto </Link> </MenuItem>
               <MenuItem > <Link to="/Climate"> Climate </Link> </MenuItem>
+
+              <MenuItem> <Link to="/newPost">New Post </Link></MenuItem>
               <MenuItem onClick={() => {
                 this.props.signOut();
                 console.log(this.props.loggedIn);
@@ -66,33 +68,7 @@ class Icon extends Component {
 
 
 
-              <IconMenu
 
-
-                iconButtonElement={
-
-                  <MenuItem primaryText="New Post" />
-
-                }
-                onBlur={() => this.setState({ open: false })}
-                anchorOrigin={{ horizontal: "left", vertical: "top" }}
-                targetOrigin={{ horizontal: "left", vertical: "top" }}
-              >
-                <MenuItem primaryText="New Post" />
-                <Link to="/post/Software">
-                  {" "}
-                  <MenuItem primaryText="Software" />
-                </Link>
-                <Link to="/post/Hardware">
-                  <MenuItem primaryText="Hardware" />
-                </Link>
-                <Link to="/post/Crypto">
-                  <MenuItem primaryText="Crypto" />
-                </Link>
-                <Link to="/post/Climate">
-                  <MenuItem primaryText="Climate" />
-                </Link>
-              </IconMenu>
 
 
             </IconMenu>
@@ -134,7 +110,7 @@ class Icon extends Component {
                   <MenuItem primaryText="New Post" />
 
                 }
-                onBlur={() => this.setState({ open: false })}
+
                 anchorOrigin={{ horizontal: "left", vertical: "top" }}
                 targetOrigin={{ horizontal: "left", vertical: "top" }}
               >

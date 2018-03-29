@@ -4,6 +4,8 @@ import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { newPosts, leavingNewPost } from "../ducks/reducer"
@@ -18,7 +20,7 @@ class AddPost extends Component {
       post: "",
       category: "",
       title: "",
-      open: false
+      open: false,
     };
     this.newPost = this.newPost.bind(this);
   }
@@ -41,6 +43,21 @@ class AddPost extends Component {
 
 
   newPost(str, cat, tit) {
+
+    if (this.state.category === "") {
+      alert("Please Select a Category")
+      return
+    }
+
+    if (str === "") {
+      alert("Please Write a post")
+      return
+    }
+
+    if (tit === "") {
+      alert("Please Enter a Title")
+      return
+    }
     let post = { post: str, category: cat, title: tit.toLowerCase() };
 
     axios
@@ -55,6 +72,8 @@ class AddPost extends Component {
       });
     console.log(this.state);
   }
+
+  handleChange = (event, index, category) => this.setState({ category });
   render() {
     const actions = [
       <FlatButton
@@ -69,7 +88,7 @@ class AddPost extends Component {
         onClick={() => {
           this.newPost(
             this.state.post,
-            this.props.match.params.category,
+            this.state.category,
             this.state.title
           );
           this.handleClose();
@@ -81,7 +100,20 @@ class AddPost extends Component {
       <div className="postContainer" >{this.props.loggedIn ?
 
         <div  >
-          <h1>New {this.props.match.params.category} Post</h1>
+          <h1>New Post</h1>
+          <div>
+
+            <SelectField
+              floatingLabelText="Category"
+              value={this.state.category}
+              onChange={this.handleChange}
+            >
+              <MenuItem value={"Software"} primaryText="Software" />
+              <MenuItem value={"Hardware"} primaryText="Hardware" />
+              <MenuItem value={"Crypto"} primaryText="Crypto" />
+              <MenuItem value={"Climate"} primaryText="Climate" />
+
+            </SelectField>  </div>
 
           <TextField onChange={e => this.setState({ title: e.target.value })}
             hintText="Enter a Title..."

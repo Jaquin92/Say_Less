@@ -93,7 +93,7 @@ app.get("/me", (req, res, next) => {
       img: req.user.picture
     };
   }
-  res.redirect("http://167.99.54.86:3002/#/profile");
+  res.redirect("http://localhost:3000/#//#/profile");
 });
 
 app.get("/api/profile/:id", userProfile)

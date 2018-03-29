@@ -21,7 +21,6 @@ export default (
     <Route path="/Climate" component={Climate} />
     <Route path="/newPost" component={AddPost} />
     <Route path="/profile" component={Profile} />
-    <Route path="/post/:category" component={AddPost} />
     <Route path="/entry/:id" component={Post} />
     <Route path="/user/:id" component={User} />
     <Route path="/edit/:id" component={Edit} />
