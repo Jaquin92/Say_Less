@@ -57,24 +57,11 @@ class App extends Component {
               <div className="sideBarImg"  > <img className="sayLess" src={require("./images/sayless.png")} alt="" /> </div>
               {this.props.loggedIn && !this.props.onNewPost && (
                 <DropDownMenu
-                  value={1}
                   onChange={this.handleChange}
                   className="newPost"
                   autoWidth={false}
                 >
-                  <MenuItem value={1} primaryText="New Post" />
-                  <Link to="/post/Software">
-                    {" "}
-                    <MenuItem value={2} primaryText="Software" />
-                  </Link>
-                  <Link to="/post/Hardware">
-                    <MenuItem value={3} primaryText="Hardware" />
-                  </Link>
-                  <Link to="/post/Crypto">
-                    <MenuItem value={4} primaryText="Crypto" />
-                  </Link>
-                  <Link to="/post/Climate">
-                    <MenuItem value={5} primaryText="Climate" />
+                  <Link to="newPost"> <MenuItem primaryText="New Post" />
                   </Link>
                 </DropDownMenu>)}
 

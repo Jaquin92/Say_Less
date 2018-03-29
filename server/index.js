@@ -93,7 +93,7 @@ app.get("/me", (req, res, next) => {
       img: req.user.picture
     };
   }
-  res.redirect("http://localhost:3000/#//#/profile");
+  res.redirect("http://sayless.fun/#/profile");
 });
 
 app.get("/api/profile/:id", userProfile)
