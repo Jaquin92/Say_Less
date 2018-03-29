@@ -60,7 +60,7 @@ const getAll = (req, res, next) => {
 };
 
 const getUser = (req, res) => {
-  if (req.session.passport) {
+  if (req.session.passport.user) {
     let user = {
       name: req.session.passport.user.displayName,
       img: req.session.passport.user.picture,
