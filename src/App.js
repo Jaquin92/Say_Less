@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "./components/Header";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import DropDownMenu from "material-ui/DropDownMenu";
+import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from "material-ui/MenuItem";
 import routes from "./routes";
 import { withRouter, Link } from "react-router-dom";
@@ -43,6 +44,7 @@ class App extends Component {
 
     })
 
+
     return (
       <div>
         <MuiThemeProvider>
@@ -57,7 +59,7 @@ class App extends Component {
               <div className="sideBarImg"  > <img className="sayLess" src={require("./images/sayless.png")} alt="" /> </div>
               {this.props.loggedIn && !this.props.onNewPost && (
 
-                <Link to="newPost"> <MenuItem primaryText="New Post" />
+                <Link to="newPost">     <RaisedButton className="newPost" label="New Post" />
                 </Link>
               )}
 
