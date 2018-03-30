@@ -169,7 +169,7 @@ input{
   margin-top:1px;
   margin-left: 80px;
   background-color: #F9F9F9;
-  width: 100%;
+  width: 80%;
   border: solid .5px lightgray;
   border-radius: 2px;
   
@@ -189,8 +189,10 @@ input{
 
 .postBody{
   display: flex;
-  text-align: center;
   overflow-wrap: break-word;
+  font-size:100%; 
+  line-height:1.5;
+  max-width: 80%;
 }
 
 .loading{
