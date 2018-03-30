@@ -379,7 +379,7 @@ padding: 2px;
   }
 }
 
-@media(max-width:9600px){
+@media(max-width:960px){
   .shortMenu{
     display: none !important;
   }
