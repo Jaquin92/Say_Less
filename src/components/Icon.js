@@ -102,35 +102,6 @@ class Icon extends Component {
 
 
 
-
-              <IconMenu
-                className="responseNewPost"
-                iconButtonElement={
-
-                  <MenuItem primaryText="New Post" />
-
-                }
-
-                anchorOrigin={{ horizontal: "left", vertical: "top" }}
-                targetOrigin={{ horizontal: "left", vertical: "top" }}
-              >
-                <MenuItem primaryText="New Post" />
-                <Link to="/post/Software">
-                  {" "}
-                  <MenuItem primaryText="Software" />
-                </Link>
-                <Link to="/post/Hardware">
-                  <MenuItem primaryText="Hardware" />
-                </Link>
-                <Link to="/post/Crypto">
-                  <MenuItem primaryText="Crypto" />
-                </Link>
-                <Link to="/post/Climate">
-                  <MenuItem primaryText="Climate" />
-                </Link>
-              </IconMenu>
-
-
             </IconMenu>
 
 
@@ -140,7 +111,7 @@ class Icon extends Component {
         {!this.props.loggedIn && (
 
           <div>
-            <a href="http://167.99.54.86:3002/login">Login</a>
+            <a href="/login">Login</a>
 
             <IconMenu
 

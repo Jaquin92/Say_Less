@@ -80,8 +80,10 @@ app.get(
 );
 app.get("/me", (req, res, next) => {
   if (!req.user) {
+    console.log(req.session.user)
     res.redirect("/login");
   } else {
+    console.log(req)
     checkUser(req);
     // res.status(200).send(req.user);
     // console.log(req.session);
@@ -93,7 +95,9 @@ app.get("/me", (req, res, next) => {
       img: req.user.picture
     };
   }
-  res.redirect("http://sayless.fun/#/profile");
+
+
+  res.redirect("/#/profile");
 });
 
 app.get("/api/profile/:id", userProfile)
