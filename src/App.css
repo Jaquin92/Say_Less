@@ -189,6 +189,7 @@ input{
 
 .postBody{
   display: flex;
+  justify-content: center;
   overflow-wrap: break-word;
   font-size:100%; 
   line-height:1.5;
