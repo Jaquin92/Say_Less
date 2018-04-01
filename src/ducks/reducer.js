@@ -86,11 +86,18 @@ export function signOut() {
 }
 
 export function search(par) {
-
-  return {
-    type: SEARCH,
-    payload: axios.get(`/api/search/${par}`).then(response => response.data).catch(err => console.log(err))
+  if (par === "") {
+    return {
+      type: SEARCH,
+      payload: []
+    }
+  } else {
+    return {
+      type: SEARCH,
+      payload: axios.get(`/api/search/${par}`).then(response => response.data).catch(err => console.log(err))
+    }
   }
+
 }
 
 
