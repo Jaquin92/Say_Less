@@ -36,7 +36,8 @@ class Header extends Component {
 
         <div className="logoNav">
           <div className="headLogo" >
-            <img className="logo" src={require("../images/logo.gif")} alt="" />
+            <a href="sayless.fun">
+              <img className="logo" src={require("../images/logo.gif")} alt="" /></a>
             <h1>SL</h1>
 
           </div>

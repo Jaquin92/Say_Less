@@ -156,6 +156,7 @@ class Post extends Component {
         let comments = this.state.comments.map((item, i) => {
 
             return <CardHeader key={i}
+                className="comments"
                 title={item.name}
                 avatar={item.img}
                 subtitle={item.body}
@@ -183,6 +184,7 @@ class Post extends Component {
             <div className="postContainer" >
                 {this.state.post[0] ? <Card  >
                     <CardHeader
+                        className="postCard"
                         title={link}
                         subtitle={<Moment fromNow >{new Date(item.time).toLocaleString()}</Moment>}
 
