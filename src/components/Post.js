@@ -83,6 +83,10 @@ class Post extends Component {
         this.setState({ expanded: false });
     };
 
+    createMarkup(str) {
+        return { __html: str };
+    }
+
     addComment(str) {
 
         let body = {
@@ -142,6 +146,7 @@ class Post extends Component {
 
 
 
+
     render() {
         let like;
         if (this.state.liked) {
@@ -171,6 +176,7 @@ class Post extends Component {
         let link;
         if (this.state.post[0]) {
             link = <Link to={`/user/${this.state.post[0].userid}`}> {item.name}</Link>
+            console.log(typeof item.body)
         }
 
 
@@ -193,7 +199,7 @@ class Post extends Component {
                     <CardTitle title={item.title.toUpperCase()} className="postTitle" />
                     <CardText className="postBody" >
 
-                        <div>{item.body}</div>
+                        <div> <div dangerouslySetInnerHTML={this.createMarkup(item.body)} /> </div>
 
 
                     </CardText>

@@ -111,7 +111,7 @@ class Icon extends Component {
         {!this.props.loggedIn && (
 
           <div>
-            <a href="/login">Login</a>
+            <a href="http://localhost:3002/login">Login</a>
 
             <IconMenu
 

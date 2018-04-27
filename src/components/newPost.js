@@ -9,8 +9,15 @@ import MenuItem from 'material-ui/MenuItem';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { newPosts, leavingNewPost } from "../ducks/reducer"
-
 import axios from "axios";
+import Editor from 'react-medium-editor';
+require('medium-editor/dist/css/medium-editor.css');
+require('medium-editor/dist/css/themes/default.css');
+
+// ES module
+
+
+
 
 class AddPost extends Component {
   constructor() {
@@ -24,6 +31,8 @@ class AddPost extends Component {
     };
     this.newPost = this.newPost.bind(this);
   }
+
+
 
   componentDidMount() {
 
@@ -39,6 +48,9 @@ class AddPost extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+  handleChanges = (text, medium) => {
+    this.setState({ post: text });
+  }
 
 
 
@@ -96,6 +108,8 @@ class AddPost extends Component {
 
       />,
     ];
+
+    console.log(Editor)
     return (
       <div className="postContainer" >{this.props.loggedIn ?
 
@@ -123,7 +137,7 @@ class AddPost extends Component {
           />
 
           <div className="newPostBody" >
-            <TextField
+            {/* <TextField
               onChange={e => this.setState({ post: e.target.value })}
               hintText="What's on your mind?"
               fullWidth={true}
@@ -131,6 +145,12 @@ class AddPost extends Component {
               rows={18}
 
 
+            /> */}
+            <Editor
+              tag="pre"
+              text={this.state.post}
+              onChange={this.handleChanges}
+              options={{ toolbar: { buttons: ['bold', 'italic', 'underline', 'anchor', 'h1', 'image', 'justifyLeft', 'justifyCenter', 'justifyRight'] } }}
             />
           </div>
           <div>

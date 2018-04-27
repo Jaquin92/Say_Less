@@ -7,8 +7,12 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { newPosts, leavingNewPost } from "../ducks/reducer"
-
+import Editor from 'react-medium-editor';
 import axios from "axios";
+require('medium-editor/dist/css/medium-editor.css');
+require('medium-editor/dist/css/themes/default.css');
+
+
 
 class Edit extends Component {
     constructor() {
@@ -83,6 +87,9 @@ class Edit extends Component {
             console.log("it worked")
         }).catch(err => console.log(err))
     }
+    handleChanges = (text, medium) => {
+        this.setState({ post: text });
+    }
 
 
 
@@ -144,7 +151,7 @@ class Edit extends Component {
                     />
 
                     <div className="newPostBody" >
-                        <TextField
+                        {/* <TextField
                             onChange={e => this.setState({ post: e.target.value })}
                             defaultValue={this.state.postToEdit.body}
                             hintText="What's on your mind?"
@@ -153,6 +160,13 @@ class Edit extends Component {
                             rows={18}
 
 
+                        /> */}
+
+                        <Editor
+                            tag="pre"
+                            text={this.state.post}
+                            onChange={this.handleChanges}
+                            options={{ toolbar: { buttons: ['bold', 'italic', 'underline', 'anchor', 'h1', 'image', 'justifyLeft', 'justifyCenter', 'justifyRight'] } }}
                         />
                     </div>
                     <div>
